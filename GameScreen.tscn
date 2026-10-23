@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://biwe43imc6pdl" path="res://icon.svg" id="1_wtcfe"]
 
-[node name="Node2D" type="Node2D" unique_id=2030027127]
+[node name="GameScreen" type="Node2D" unique_id=2030027127]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2104795361]
 

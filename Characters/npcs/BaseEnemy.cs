@@ -3,7 +3,7 @@ using System;
 
 public partial class BaseEnemy : CharacterBody2D
 {
-	[Export] public int Speed { get; set; } = 500; // How fast the player will move (pixels/sec).
+	[Export] public int Speed { get; set; } = 450; // How fast the player will move (pixels/sec).
 
 	public Player Target { get; set; }
 	public AnimatedSprite2D animatedSprite2D;

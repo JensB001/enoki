@@ -17,7 +17,6 @@ public partial class God : Node
 
     private void Spawn()
     {
-		GD.Print("Spawn called, Target: ", Target, ", Scene: ", EnemyScene);
         if (!IsInstanceValid(Target)) return;
 
         var enemy = EnemyScene.Instantiate<BaseEnemy>();

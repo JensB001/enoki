@@ -15,23 +15,23 @@ public partial class Player : CharacterBody2D
 		Movement ??= new MovementComponent();
 		AddChild(Movement);
 		Movement.Body = this;
-		// animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	}
 
 	public override void _PhysicsProcess(double delta)
 	{
 		Movement.Move(Input.GetVector("move_left", "move_right", "move_up", "move_down"), Speed);
 
-		// if (velocity.X != 0)
-		// {
-		// 	animatedSprite2D.Animation = "default";
-		// 	animatedSprite2D.FlipV = false;
-		// 	// See the note below about the following boolean assignment.
-		// 	animatedSprite2D.FlipH = velocity.X > 0;
-		// }
-		// else if (velocity.Y != 0)
-		// {
-		// 	animatedSprite2D.Animation = "default";
-		// }
+		if (Movement.Body.Velocity.X != 0)
+		{
+			animatedSprite2D.Animation = "default";
+			animatedSprite2D.FlipV = false;
+			// See the note below about the following boolean assignment.
+			animatedSprite2D.FlipH = Movement.Body.Velocity.X > 0;
+		}
+		else if (Movement.Body.Velocity.Y != 0)
+		{
+			animatedSprite2D.Animation = "default";
+		}
 	}
 }

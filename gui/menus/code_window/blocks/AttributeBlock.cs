@@ -19,6 +19,6 @@ public partial class AttributeBlock : Block {
 
 	public override void _Ready() {
 		base._Ready();
-		AddChild(new Label { Text = Value.ToString() });
+		AddChild(new Label { Text = Value.ToString(), HorizontalAlignment = HorizontalAlignment.Center });
 	}
 }

@@ -28,10 +28,12 @@ public partial class BaseEnemy : CharacterBody2D
 			animatedSprite2D.FlipV = false;
 			// See the note below about the following boolean assignment.
 			animatedSprite2D.FlipH = Movement.Body.Velocity.X > 0;
+			animatedSprite2D.Play();
 		}
 		else if (Movement.Body.Velocity.Y != 0)
 		{
 			animatedSprite2D.Animation = "default";
+			animatedSprite2D.Play();
 		}
 	}
 }

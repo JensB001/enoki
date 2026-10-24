@@ -41,3 +41,7 @@ placeholder_text = "Enter text..."
 [node name="ExitButton" type="Button" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=483822485]
 layout_mode = 2
 text = "Exit"
+
+[node name="TestButton" type="Button" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=1333502433]
+layout_mode = 2
+text = "test"

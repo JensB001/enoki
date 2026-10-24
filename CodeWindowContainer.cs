@@ -1,16 +1,20 @@
 using Godot;
+using Jint;
+using Engine = Jint.Engine;
 
 namespace Enoki;
 
 public partial class CodeWindowContainer : PanelContainer {
+	
+	private Engine _engine = new Engine();
 
 	private bool _dragWindowButtonPressed = false;
 	private Vector2 _previousMousePosition = Vector2.Zero;
 	
+	private string _code = "";
+	
 	public override void _Ready() {
 		var exitButton = GetNode<Button>("VBoxContainer/ExitButton");
-		var dragWindowButton = GetNode<Button>("DragWindowButton");
-		
 		exitButton.Pressed += OnExitButtonPressed;
 
 		var dragWindowButton = GetNode<Button>("DragWindowButton");
@@ -22,6 +26,8 @@ public partial class CodeWindowContainer : PanelContainer {
 	}
 	
 	public override void _Process(double delta) {
+		_code = GetNode<CodeEdit>("VBoxContainer/CodeEdit").Text;
+		
 		if (_dragWindowButtonPressed) {
 			var currentMousePosition = GetViewport().GetMousePosition();
 			var mouseDelta = currentMousePosition - _previousMousePosition;
@@ -42,5 +48,10 @@ public partial class CodeWindowContainer : PanelContainer {
 
 	private void OnDragWindowButtonUp() {
 		_dragWindowButtonPressed = false;
+	}
+	
+	private void OnTestButtonPressed() {
+		var result = _engine.Evaluate(_code).AsNumber();
+		GD.Print(result);
 	}
 }

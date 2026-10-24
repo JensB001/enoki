@@ -1,4 +1,5 @@
 using System;
+using Enoki.gui.menus.code_window.blocks;
 using Godot;
 
 namespace Enoki.gui.menus.code_window;
@@ -19,19 +20,16 @@ public partial class AddBlock : CanvasLayer
 
 	private void OnAddBlockButtonPressed()
 	{
-		var block = new PanelContainer();
-		var random = new Random();
-		
-		var style = new StyleBoxFlat();
-		style.BgColor = new Color(random.NextSingle(), random.NextSingle(), random.NextSingle());
-		style.SetCornerRadiusAll(6);
-		style.SetContentMarginAll(8);
-		block.AddThemeStyleboxOverride("panel", style);
+		var attributes = Enum.GetValues<AttributeType>();
 
-		var label = new Label();
-		label.Text = "Fire";
-		block.AddChild(label);
-		
-		GetNode<VBoxContainer>("CodeWindowContainer/VBoxContainer").AddChild(block);
+		Block block = Random.Shared.Next(4) switch
+		{
+			0 => new NumberBlock { Value = Random.Shared.Next(1, 6) },
+			1 => new AttributeBlock { Value = attributes[Random.Shared.Next(attributes.Length)] },
+			2 => new AdderBlock(),
+			_ => new MultiplierBlock(),
+		};
+
+		GetNode<BlockCanvas>("CodeWindowContainer/VBoxContainer/BlockCanvas").Spawn(block);
 	}
 }

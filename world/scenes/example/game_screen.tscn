@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cr474r3qxkf2w" path="res://characters/Player/player.tscn" id="2_ia58q"]
 [ext_resource type="Script" uid="uid://cgforeiv8tmna" path="res://gui/menus/code_window/AddBlock.cs" id="3_3r601"]
 [ext_resource type="Script" uid="uid://kahsemfrpy8t" path="res://gui/menus/code_window/CodeWindowContainer.cs" id="3_dksv3"]
+[ext_resource type="Script" uid="uid://b8kb3pttomcqy" path="res://gui/menus/code_window/blocks/BlockCanvas.cs" id="4_blkcv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bxuhl"]
 texture = ExtResource("1_cepqy")
@@ -66,6 +67,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Code Window"
 horizontal_alignment = 1
+
+[node name="BlockCanvas" type="Control" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=1627237410]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("4_blkcv")
 
 [node name="AddBlock" type="Button" parent="CanvasLayer" unique_id=735757235]
 offset_right = 8.0

@@ -28,22 +28,8 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=876178375]
-layout_mode = 2
-mouse_filter = 2
-alignment = 2
-
-[node name="Label" type="Label" parent="CanvasLayer/CodeWindowContainer/VBoxContainer/HFlowContainer" unique_id=2112696624]
+[node name="Label" type="Label" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=2112696624]
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Code Window"
 horizontal_alignment = 1
-
-[node name="ExitButton" type="Button" parent="CanvasLayer/CodeWindowContainer/VBoxContainer/HFlowContainer" unique_id=483822485]
-layout_mode = 2
-size_flags_horizontal = 8
-text = "Exit"
-
-[node name="AddBlockButton" type="Button" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=1489899884]
-layout_mode = 2
-text = "Add Block"

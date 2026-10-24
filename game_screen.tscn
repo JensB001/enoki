@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cs8hhrf3y3jb4"]
 
-[ext_resource type="Script" uid="uid://kahsemfrpy8t" path="res://CodeWindowContainer.cs" id="1_mnua3"]
-[ext_resource type="Texture2D" uid="uid://biwe43imc6pdl" path="res://icon.svg" id="1_vau7r"]
+[ext_resource type="Script" uid="uid://kahsemfrpy8t" path="res://CodeWindowContainer.cs" id="1_t5odh"]
 
 [node name="GameScreen" type="Node2D" unique_id=2030027127]
 
@@ -19,7 +18,7 @@ offset_right = 200.0
 offset_bottom = 250.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_mnua3")
+script = ExtResource("1_t5odh")
 
 [node name="DragWindowButton" type="Button" parent="CanvasLayer/CodeWindowContainer" unique_id=52517886]
 modulate = Color(1, 1, 1, 0)
@@ -31,14 +30,8 @@ mouse_filter = 2
 
 [node name="Label" type="Label" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=2112696624]
 layout_mode = 2
-text = "Very Cool Window"
+text = "Code Window"
 horizontal_alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=40532536]
-layout_mode = 2
-size_flags_vertical = 3
-mouse_filter = 2
-texture = ExtResource("1_vau7r")
 
 [node name="TextEdit" type="TextEdit" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=1698696910]
 layout_mode = 2

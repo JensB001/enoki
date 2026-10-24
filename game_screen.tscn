@@ -12,10 +12,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -250.0
-offset_right = 200.0
-offset_bottom = 250.0
+offset_left = -556.0
+offset_top = -304.0
+offset_right = -156.0
+offset_bottom = 196.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_t5odh")
@@ -28,20 +28,22 @@ layout_mode = 2
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=2112696624]
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=876178375]
 layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CodeWindowContainer/VBoxContainer/HFlowContainer" unique_id=2112696624]
+layout_mode = 2
+size_flags_horizontal = 3
 text = "Code Window"
 horizontal_alignment = 1
 
-[node name="CodeEdit" type="RichTextLabel" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=612287343]
+[node name="ExitButton" type="Button" parent="CanvasLayer/CodeWindowContainer/VBoxContainer/HFlowContainer" unique_id=483822485]
 layout_mode = 2
-size_flags_vertical = 3
-text = "TEST TEST"
-
-[node name="ExitButton" type="Button" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=483822485]
-layout_mode = 2
+size_flags_horizontal = 8
 text = "Exit"
 
-[node name="TestButton" type="Button" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=1333502433]
+[node name="AddBlockButton" type="Button" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=1489899884]
 layout_mode = 2
-text = "test"
+text = "Add Block"

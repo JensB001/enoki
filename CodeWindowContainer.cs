@@ -4,19 +4,16 @@ namespace Enoki;
 
 public partial class CodeWindowContainer : PanelContainer {
 	
-	private bool _dragWindowButtonPressed = false;
+	private bool _dragWindowButtonPressed;
 	private Vector2 _previousMousePosition = Vector2.Zero;
 	
 	public override void _Ready() {
-		var exitButton = GetNode<Button>("VBoxContainer/ExitButton");
+		var exitButton = GetNode<Button>("VBoxContainer/HFlowContainer/ExitButton");
 		exitButton.Pressed += OnExitButtonPressed;
 
 		var dragWindowButton = GetNode<Button>("DragWindowButton");
 		dragWindowButton.ButtonDown += OnDragWindowButtonDown;
 		dragWindowButton.ButtonUp += OnDragWindowButtonUp;
-
-		var testButton = GetNode<Button>("VBoxContainer/TestButton");
-		testButton.Pressed += OnTestButtonPressed;
 	}
 	
 	public override void _Process(double delta) {
@@ -40,10 +37,5 @@ public partial class CodeWindowContainer : PanelContainer {
 
 	private void OnDragWindowButtonUp() {
 		_dragWindowButtonPressed = false;
-	}
-	
-	private void OnTestButtonPressed() {
-		// var result = _engine.Evaluate(_code);
-		// GD.Print(result);
 	}
 }

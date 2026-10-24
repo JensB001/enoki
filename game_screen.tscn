@@ -33,10 +33,10 @@ layout_mode = 2
 text = "Code Window"
 horizontal_alignment = 1
 
-[node name="CodeEdit" type="CodeEdit" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=474349603]
+[node name="CodeEdit" type="RichTextLabel" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=612287343]
 layout_mode = 2
 size_flags_vertical = 3
-placeholder_text = "Enter text..."
+text = "TEST TEST"
 
 [node name="ExitButton" type="Button" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=483822485]
 layout_mode = 2

@@ -1,6 +1,6 @@
 using Godot;
 
-namespace Enoki;
+namespace Enoki.gui.menus.code_window;
 
 public partial class CodeWindowContainer : PanelContainer {
 	

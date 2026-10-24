@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://q2y7uc4mwpfm" path="res://world/scenes/example/Tilemap.png" id="1_cepqy"]
 [ext_resource type="PackedScene" uid="uid://cr474r3qxkf2w" path="res://characters/Player/player.tscn" id="2_ia58q"]
+[ext_resource type="Script" uid="uid://cgforeiv8tmna" path="res://gui/menus/code_window/AddBlock.cs" id="3_3r601"]
+[ext_resource type="Script" uid="uid://kahsemfrpy8t" path="res://gui/menus/code_window/CodeWindowContainer.cs" id="3_dksv3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bxuhl"]
 texture = ExtResource("1_cepqy")
@@ -35,3 +37,37 @@ tile_set = SubResource("TileSet_4yvi0")
 
 [node name="Player" parent="." unique_id=1853275132 instance=ExtResource("2_ia58q")]
 position = Vector2(1478, 1224)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=81375279]
+script = ExtResource("3_3r601")
+
+[node name="CodeWindowContainer" type="PanelContainer" parent="CanvasLayer" unique_id=156043040]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -556.0
+offset_top = -304.0
+offset_right = -156.0
+offset_bottom = 196.0
+script = ExtResource("3_dksv3")
+
+[node name="DragWindowButton" type="Button" parent="CanvasLayer/CodeWindowContainer" unique_id=1773597243]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CodeWindowContainer" unique_id=1227921157]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=679513763]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Code Window"
+horizontal_alignment = 1
+
+[node name="AddBlock" type="Button" parent="CanvasLayer" unique_id=735757235]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "AddBlock"

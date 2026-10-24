@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://q2y7uc4mwpfm" path="res://world/scenes/example/Tilemap.png" id="1_cepqy"]
 [ext_resource type="PackedScene" uid="uid://cr474r3qxkf2w" path="res://characters/player/player.tscn" id="2_yc0c3"]
+[ext_resource type="PackedScene" uid="uid://ikaycm4wsknd" path="res://characters/god/God.tscn" id="3_kxwc8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bxuhl"]
 texture = ExtResource("1_cepqy")
@@ -35,3 +36,6 @@ tile_set = SubResource("TileSet_4yvi0")
 
 [node name="Player" parent="." unique_id=1853275132 instance=ExtResource("2_yc0c3")]
 position = Vector2(1338, 701)
+
+[node name="God" parent="." unique_id=1840092192 node_paths=PackedStringArray("Target") instance=ExtResource("3_kxwc8")]
+Target = NodePath("../Player")

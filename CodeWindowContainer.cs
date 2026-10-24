@@ -12,15 +12,20 @@ public partial class CodeWindowContainer : PanelContainer {
 		var dragWindowButton = GetNode<Button>("DragWindowButton");
 		
 		exitButton.Pressed += OnExitButtonPressed;
-		
+
+		var dragWindowButton = GetNode<Button>("DragWindowButton");
 		dragWindowButton.ButtonDown += OnDragWindowButtonDown;
 		dragWindowButton.ButtonUp += OnDragWindowButtonUp;
+
+		var testButton = GetNode<Button>("VBoxContainer/TestButton");
+		testButton.Pressed += OnTestButtonPressed;
 	}
 	
 	public override void _Process(double delta) {
 		if (_dragWindowButtonPressed) {
 			var currentMousePosition = GetViewport().GetMousePosition();
 			var mouseDelta = currentMousePosition - _previousMousePosition;
+			
 			Position += mouseDelta;
 			_previousMousePosition = currentMousePosition;
 		}

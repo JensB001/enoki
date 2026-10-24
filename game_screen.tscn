@@ -33,7 +33,7 @@ layout_mode = 2
 text = "Code Window"
 horizontal_alignment = 1
 
-[node name="TextEdit" type="TextEdit" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=1698696910]
+[node name="CodeEdit" type="CodeEdit" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=474349603]
 layout_mode = 2
 size_flags_vertical = 3
 placeholder_text = "Enter text..."

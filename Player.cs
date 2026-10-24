@@ -74,6 +74,21 @@ public partial class Player : Area2D
 	[Signal]
 	public delegate void HitEventHandler();
 
+	private void OnBodyEntered(Node2D body)
+	{
+		Hide(); // Player dissapears after being hit.
+		EmitSignal(SignalName.Hit);
+
+		//Basically just makes it so that the hit collision is only triggered once and does so safely with SetDeferred
+		GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
+	}
+
+	public void Start(Vector2 position)
+	{
+		Position = position;
+		Show();
+		GetNode<CollisionShape2D>("CollisionShape2D").Disabled = false;
+	}
 
 }
 

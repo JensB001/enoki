@@ -3,12 +3,11 @@ using System;
 
 public partial class BaseEnemy : CharacterBody2D
 {
-	[Export] MovementComponent Movement { get; set; }
-	[Export] public Player Target { get; set; }
+	[Export] public int Speed { get; set; } = 410; // How fast the player will move (pixels/sec).
 
-	public int Speed { get; set; } = 500; // How fast the player will move (pixels/sec).
-
+	public Player Target { get; set; }
 	public AnimatedSprite2D animatedSprite2D;
+	MovementComponent Movement { get; set; }
 
 	public override void _Ready()
 	{
@@ -20,6 +19,7 @@ public partial class BaseEnemy : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (!IsInstanceValid(Target)) return;
 		Movement.Move(GlobalPosition.DirectionTo(Target.GlobalPosition), Speed);
 
 		if (Movement.Body.Velocity.X != 0)

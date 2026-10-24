@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cr474r3qxkf2w"]
 
-[ext_resource type="Script" uid="uid://bpwdii784rjwd" path="res://characters/Player/Player.cs" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://crjik3jgjdsn2" path="res://characters/Player/player1.png" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://bpwdii784rjwd" path="res://characters/player/Player.cs" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://crjik3jgjdsn2" path="res://characters/player/player1.png" id="2_i3pqv"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4yvre"]
 animations = [{
@@ -17,7 +17,7 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4yvre"]
 radius = 9.0
 
-[node name="Player" type="Area2D" unique_id=1853275132]
+[node name="Player" type="CharacterBody2D" unique_id=903677202]
 z_index = 2
 script = ExtResource("1_onrkg")
 

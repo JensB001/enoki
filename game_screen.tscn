@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://cs8hhrf3y3jb4"]
+
+[ext_resource type="Script" uid="uid://kahsemfrpy8t" path="res://CodeWindowContainer.cs" id="1_t5odh"]
+
+[node name="GameScreen" type="Node2D" unique_id=2030027127]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=2104795361]
+
+[node name="CodeWindowContainer" type="PanelContainer" parent="CanvasLayer" unique_id=2000715163]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -556.0
+offset_top = -304.0
+offset_right = -156.0
+offset_bottom = 196.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_t5odh")
+
+[node name="DragWindowButton" type="Button" parent="CanvasLayer/CodeWindowContainer" unique_id=52517886]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CodeWindowContainer" unique_id=1408961661]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="HFlowContainer" type="HFlowContainer" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=876178375]
+layout_mode = 2
+mouse_filter = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/CodeWindowContainer/VBoxContainer/HFlowContainer" unique_id=2112696624]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Code Window"
+horizontal_alignment = 1
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/CodeWindowContainer/VBoxContainer/HFlowContainer" unique_id=483822485]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Exit"
+
+[node name="AddBlockButton" type="Button" parent="CanvasLayer/CodeWindowContainer/VBoxContainer" unique_id=1489899884]
+layout_mode = 2
+text = "Add Block"

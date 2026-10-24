@@ -8,9 +8,6 @@ public partial class CodeWindowContainer : PanelContainer {
 	private Vector2 _previousMousePosition = Vector2.Zero;
 	
 	public override void _Ready() {
-		var exitButton = GetNode<Button>("VBoxContainer/HFlowContainer/ExitButton");
-		exitButton.Pressed += OnExitButtonPressed;
-
 		var dragWindowButton = GetNode<Button>("DragWindowButton");
 		dragWindowButton.ButtonDown += OnDragWindowButtonDown;
 		dragWindowButton.ButtonUp += OnDragWindowButtonUp;
@@ -24,10 +21,6 @@ public partial class CodeWindowContainer : PanelContainer {
 			Position += mouseDelta;
 			_previousMousePosition = currentMousePosition;
 		}
-	}
-
-	private void OnExitButtonPressed() {
-		Hide();
 	}
 
 	private void OnDragWindowButtonDown() {

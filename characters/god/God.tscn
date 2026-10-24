@@ -1,0 +1,10 @@
+
+[gd_scene format=3 uid="uid://ikaycm4wsknd"]
+
+[ext_resource type="Script" uid="uid://bengr10ggcpwg" path="res://characters/god/God.cs" id="1_kivpy"]
+[ext_resource type="PackedScene" uid="uid://f6yuxp71nnkc" path="res://characters/npcs/base_enemy.tscn" id="1_rw22p"]
+
+[node name="God" type="Node2D" unique_id=1840092192 node_paths=PackedStringArray("Target")]
+script = ExtResource("1_kivpy")
+EnemyScene = ExtResource("1_rw22p")
+Target = NodePath("")

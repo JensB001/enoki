@@ -1,13 +1,45 @@
 [gd_scene format=3 uid="uid://cr474r3qxkf2w"]
 
-[ext_resource type="Script" uid="uid://bpwdii784rjwd" path="res://characters/Player/Player.cs" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://crjik3jgjdsn2" path="res://characters/Player/player1.png" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://bpwdii784rjwd" path="res://Characters/Player/Player.cs" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://c8ys11p6a62kp" path="res://Characters/mosquit-Sheet.PNG" id="2_j341n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cue0d"]
+atlas = ExtResource("2_j341n")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bqsbk"]
+atlas = ExtResource("2_j341n")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xf5fp"]
+atlas = ExtResource("2_j341n")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osktb"]
+atlas = ExtResource("2_j341n")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7vev3"]
+atlas = ExtResource("2_j341n")
+region = Rect2(64, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4yvre"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_i3pqv")
+"texture": SubResource("AtlasTexture_cue0d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bqsbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xf5fp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osktb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7vev3")
 }],
 "loop": 1,
 "name": &"default",
@@ -17,12 +49,15 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4yvre"]
 radius = 9.0
 
-[node name="Player" type="Area2D" unique_id=1853275132]
+[node name="Player" type="CharacterBody2D" unique_id=903677202]
 z_index = 2
 script = ExtResource("1_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1712862663]
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_4yvre")
+frame_progress = 0.804146
+speed_scale = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=605868016]
 position = Vector2(-1, 1)

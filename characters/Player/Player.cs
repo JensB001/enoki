@@ -1,79 +1,45 @@
 using Godot;
 
-public partial class Player : Area2D
+public partial class Player : CharacterBody2D
 {
-	[Export]
+	[Export] MovementComponent Movement { get; set; }
 	public int Speed { get; set; } = 400; // How fast the player will move (pixels/sec).
 
 	public Vector2 ScreenSize; // Size of the game window.
+	public AnimatedSprite2D animatedSprite2D;
 
 	public override void _Ready()
 	{
 		ScreenSize = GetViewportRect().Size;
 
-		// Hide();
-
+		Movement ??= new MovementComponent();
+		AddChild(Movement);
+		Movement.Body = this;
+		// animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	}
 
-	public override void _Process(double delta)
+	public override void _PhysicsProcess(double delta)
 	{
-		var velocity = Vector2.Zero; // The player's movement vector.
+		Movement.Move(Input.GetVector("move_left", "move_right", "move_up", "move_down"), Speed);
 
-		if (Input.IsActionPressed("move_right"))
+		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
+		if (Movement.Body.Velocity.X != 0)
 		{
-			velocity.X += 1;
+			animatedSprite2D.Animation = "default";
+			animatedSprite2D.FlipV = false;
+			// See the note below about the following boolean assignment.
+			animatedSprite2D.FlipH = Movement.Body.Velocity.X < 0;
+			animatedSprite2D.Play();
 		}
-
-		if (Input.IsActionPressed("move_left"))
+		else if (Movement.Body.Velocity.Y != 0)
 		{
-			velocity.X -= 1;
-		}
-
-		if (Input.IsActionPressed("move_down"))
-		{
-			velocity.Y += 1;
-		}
-
-		if (Input.IsActionPressed("move_up"))
-		{
-			velocity.Y -= 1;
-		}
-
-		var animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-
-		if (velocity.Length() > 0)
-		{
-			velocity = velocity.Normalized() * Speed;
+			animatedSprite2D.Animation = "default";
 			animatedSprite2D.Play();
 		}
 		else
 		{
 			animatedSprite2D.Stop();
 		}
-
-		//Position += velocity * (float)delta;
-		//Position = new Vector2(
-			//x: Mathf.Clamp(Position.X, 0, ScreenSize.X),
-			//y: Mathf.Clamp(Position.Y, 0, ScreenSize.Y)
-		//);
-		
-		Position += velocity * (float)delta;
-		Position = new Vector2(
-			x: Position.X,
-			y: Position.Y
-		);
-
-		if (velocity.X != 0)
-		{
-			animatedSprite2D.Animation = "default";
-			animatedSprite2D.FlipV = false;
-			// See the note below about the following boolean assignment.
-			animatedSprite2D.FlipH = velocity.X > 0;
-		}
-		else if (velocity.Y != 0)
-		{
-			animatedSprite2D.Animation = "default";
-		}
 	}
-
 }

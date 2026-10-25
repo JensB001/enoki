@@ -42,14 +42,17 @@ public abstract partial class Block : PanelContainer {
 		}
 
 		if (@event is InputEventMouseMotion) {
-			GlobalPosition = GetGlobalMousePosition() - _grabOffset;
-			FindBlockCanvas().FitToBlocks();
+			if (!Input.IsMouseButtonPressed(MouseButton.Left)) {
+				EndDrag();
+				return;
+			}
+
+			var canvas = FindBlockCanvas();
+			GlobalPosition = canvas.ClampToViewport(this, GetGlobalMousePosition() - _grabOffset);
+			canvas.FitToBlocks();
 			GetViewport().SetInputAsHandled();
 		} else if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: false }) {
-			_dragging = false;
-			var canvas = FindBlockCanvas();
-			canvas.TryDropIntoSlot(this);
-			canvas.FitToBlocks();
+			EndDrag();
 			GetViewport().SetInputAsHandled();
 		}
 	}
@@ -67,5 +70,12 @@ public abstract partial class Block : PanelContainer {
 		if (GetParent() is BlockCanvas) {
 			Size = Vector2.Zero;
 		}
+	}
+	
+	private void EndDrag() {
+		_dragging = false;
+		var canvas = FindBlockCanvas();
+		canvas.TryDropIntoSlot(this);
+		canvas.FitToBlocks();
 	}
 }

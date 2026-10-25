@@ -31,7 +31,7 @@ sources/0 = SubResource("TileSetAtlasSource_bxuhl")
 [node name="GameScreen" type="Node2D" unique_id=1151091540]
 
 [node name="TileMapBackground" type="TileMapLayer" parent="." unique_id=1772986560]
-z_index = 2
+z_index = 1
 y_sort_enabled = true
 texture_filter = 1
 position = Vector2(0, 1)

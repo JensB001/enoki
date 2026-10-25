@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cr474r3qxkf2w"]
 
 [ext_resource type="Script" uid="uid://bpwdii784rjwd" path="res://characters/Player/Player.cs" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://08d0dlbg3h50" path="res://asset/mosquit-sheet.png" id="2_j341n"]
+[ext_resource type="Texture2D" uid="uid://gdijtbl2g06e" path="res://asset/mosquit-sheet.png" id="2_j341n"]
 [ext_resource type="PackedScene" uid="uid://bjv08x0rvqxjk" path="res://characters/projectiles/bullet.tscn" id="3_j7dd2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cue0d"]

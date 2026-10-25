@@ -6,6 +6,7 @@ public partial class Bullet : Area2D {
 	[Export] public float Lifetime { get; set; } = 3;
 
 	public Vector2 Direction { get; set; } = Vector2.Right;
+	public Vector2 InheritedVelocity { get; set; } = Vector2.Zero;
 	public float PhysicalDamage { get; set; } = 1;
 	public float FireDamage { get; set; }
 	public float IceDamage { get; set; }
@@ -19,7 +20,8 @@ public partial class Bullet : Area2D {
 	}
 
 	public override void _PhysicsProcess(double delta) {
-		GlobalPosition += Direction * Speed * (float)delta;
+		Vector2 velocity = Direction * Speed + InheritedVelocity;
+		GlobalPosition += velocity * (float)delta;
 
 		if (FireDamage <= 0 && IceDamage <= 0)
 		{

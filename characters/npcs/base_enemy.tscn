@@ -62,7 +62,6 @@ script = ExtResource("1_bg2dh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2134414687]
 texture_filter = 1
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_bg2dh")
 speed_scale = 2.0
 

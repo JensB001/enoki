@@ -7,7 +7,7 @@ public partial class Player : CharacterBody2D
 	[Export] MovementComponent Movement { get; set; }
 	[Export] public PackedScene BulletScene { get; set; }
 
-	public int Speed { get; set; } = 400; // How fast the player will move (pixels/sec).
+	public int Speed { get; set; } = 96; // How fast the player will move (pixels/sec).
 
 	public Vector2 ScreenSize; // Size of the game window.
 	public AnimatedSprite2D animatedSprite2D;

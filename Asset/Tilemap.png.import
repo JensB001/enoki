@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ca8xtxa6lsnab"
-path="res://.godot/imported/chimkn.PNG-78d959904c2429744fb211ea6a8b3f2b.ctex"
+uid="uid://q2y7uc4mwpfm"
+path="res://.godot/imported/Tilemap.png-a6c0085bc6019267520a82370a65d5d2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/chimkn.PNG"
-dest_files=["res://.godot/imported/chimkn.PNG-78d959904c2429744fb211ea6a8b3f2b.ctex"]
+source_file="res://asset/Tilemap.png"
+dest_files=["res://.godot/imported/Tilemap.png-a6c0085bc6019267520a82370a65d5d2.ctex"]
 
 [params]
 

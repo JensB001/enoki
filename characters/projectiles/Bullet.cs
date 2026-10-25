@@ -10,12 +10,37 @@ public partial class Bullet : Area2D {
 	public float FireDamage { get; set; }
 	public float IceDamage { get; set; }
 
+	public AnimatedSprite2D animatedSprite2D;
+
 	public override void _Ready() {
 		BodyEntered += OnBodyEntered;
+
+		animatedSprite2D = GetNode<AnimatedSprite2D>("Sprite2D");
 	}
 
 	public override void _PhysicsProcess(double delta) {
 		GlobalPosition += Direction * Speed * (float)delta;
+
+		if (FireDamage <= 0 && IceDamage <= 0)
+		{
+			animatedSprite2D.Animation = "default";
+			animatedSprite2D.Play();
+		}
+		else if (FireDamage > 0 && IceDamage > 0)
+		{
+			animatedSprite2D.Animation = "default";
+			animatedSprite2D.Play();
+		}
+		else if (FireDamage > 0 && IceDamage <= 0)
+		{
+			animatedSprite2D.Animation = "fire";
+			animatedSprite2D.Play();
+		}
+		else if (FireDamage <= 0 && IceDamage > 0)
+		{
+			animatedSprite2D.Animation = "ice";
+			animatedSprite2D.Play();
+		}
 
 		Lifetime -= (float)delta;
 		if (Lifetime <= 0) {
@@ -27,6 +52,7 @@ public partial class Bullet : Area2D {
 		if (body is Player) {
 			return;
 		}
+
 
 		if (body is IDamageable target) {
 			target.TakeDamage(new DamageInfo(PhysicalDamage, FireDamage, IceDamage));

@@ -4,7 +4,7 @@ public partial class Bullet : Area2D {
 
 	[Export] public float Speed { get; set; } = 128;
 	[Export] public float Lifetime { get; set; } = 3;
-	[Export] public float Knockback { get; set; } = 100;
+	[Export] public float Knockback { get; set; } = 220;
 
 	public Vector2 Direction { get; set; } = Vector2.Right;
 	public Vector2 InheritedVelocity { get; set; } = Vector2.Zero;

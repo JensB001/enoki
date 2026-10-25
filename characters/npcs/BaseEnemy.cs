@@ -231,7 +231,10 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 		}
 
 		var direction = GlobalPosition.DirectionTo(Target.GlobalPosition) + Separation();
-		Movement.Move(direction.LimitLength(1), Speed);
+
+		// Staggered while being knocked back: regain control as the knockback fades.
+		float control = 1 - Mathf.Clamp(Movement.Knockback.Length() / Mathf.Max(Speed, 1), 0, 1);
+		Movement.Move(direction.LimitLength(1) * control, Speed);
 
 		CheckPlayerCollision();
 
@@ -239,7 +242,7 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 		{
 			animatedSprite2D.Animation = "default";
 			animatedSprite2D.FlipV = false;
-			animatedSprite2D.FlipH = Movement.Body.Velocity.X > 0;
+			animatedSprite2D.FlipH = direction.X > 0; // face the player, even while knocked back
 			animatedSprite2D.Play();
 		}
 		else if (Movement.Body.Velocity.Y != 0)

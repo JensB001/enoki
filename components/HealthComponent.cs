@@ -37,7 +37,6 @@ public partial class HealthComponent : Node, IDamageable
 
 		EmitSignal(SignalName.HealthChange, Health, MaxHealth);
 
-		GD.Print($"Health after hit: {Health}/{MaxHealth}");
 
 		if (Health <= 0)
 		{

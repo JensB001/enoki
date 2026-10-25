@@ -8,7 +8,6 @@ public partial class CanvasLayer2 : CanvasLayer
 
 	public void Bind(Player player)
 	{
-		GD.Print("HUD Bind Called");
 		HealthBar.Target = player.Health;
 	}
 }

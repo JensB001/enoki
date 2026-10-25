@@ -13,6 +13,7 @@ public partial class Player : CharacterBody2D, IDamageable
 	public AnimatedSprite2D animatedSprite2D;
 
 	[Export] public HealthComponent Health {get; set;}
+	SpriteFxComponent SpriteFx { get; set; }
 
 	private double _invincible;
 
@@ -20,6 +21,8 @@ public partial class Player : CharacterBody2D, IDamageable
 	{
 		// GetTree().Root.PrintTreePretty();
 		ScreenSize = GetViewportRect().Size;
+
+		MotionMode = MotionModeEnum.Floating; // top-down movement, no floors/walls
 
 		Movement ??= new MovementComponent();
 		Health ??= new HealthComponent();
@@ -33,9 +36,10 @@ public partial class Player : CharacterBody2D, IDamageable
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
+		SpriteFx = new SpriteFxComponent { Sprite = animatedSprite2D };
+		AddChild(SpriteFx);
 
 		var hud = GetNodeOrNull<CanvasLayer2>("../CanvasLayer2");
-		GD.Print($"LOOKUP V2 at {GetPath()}: {(hud == null ? "null" : "found")}");
 		hud?.Bind(this);
 	}
 
@@ -45,7 +49,15 @@ public partial class Player : CharacterBody2D, IDamageable
 
 		_invincible = 0.75;
 
+		SpriteFx.Flash();
 		Health.TakeDamage(damage);
+	}
+
+	public void ApplyKnockback(Vector2 impulse)
+	{
+		if (_invincible > 0) return; // only get pushed by hits that actually land
+
+		Movement.ApplyKnockback(impulse);
 	}
 
 	private void OnDied() {

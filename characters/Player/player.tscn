@@ -76,3 +76,10 @@ zoom = Vector2(3, 3)
 
 [node name="Bullet" parent="." unique_id=1848642379 instance=ExtResource("3_j7dd2")]
 position = Vector2(20, 2)
+
+[node name="HitBox" type="Area2D" parent="." unique_id=272612953]
+script = ExtResource("4_yrol7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1726629539]
+position = Vector2(-4, 0)
+shape = SubResource("CapsuleShape2D_4r1u5")

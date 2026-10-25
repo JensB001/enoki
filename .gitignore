@@ -5,5 +5,6 @@ Asset/*.import
 .vscode/
 /android/
 .idea/
+.import
 
 Enoki.csproj

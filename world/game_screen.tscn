@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://cr474r3qxkf2w" path="res://characters/Player/player.tscn" id="2_yc0c3"]
 [ext_resource type="PackedScene" uid="uid://ikaycm4wsknd" path="res://characters/god/God.tscn" id="3_kxwc8"]
 [ext_resource type="Resource" uid="uid://c34m8nvph0agk" path="res://world/chunks/mildgrass.tres" id="4_l0xyp"]
-[ext_resource type="Script" uid="uid://cgforeiv8tmna" path="res://gui/menus/code_window/AddBlock.cs" id="4_p68gx"]
 [ext_resource type="Script" uid="uid://kahsemfrpy8t" path="res://gui/menus/code_window/CodeWindowContainer.cs" id="5_gqrb7"]
+[ext_resource type="Script" uid="uid://cgforeiv8tmna" path="res://gui/menus/code_window/CanvasScript.cs" id="6_dn2vf"]
 [ext_resource type="Script" uid="uid://b8kb3pttomcqy" path="res://gui/menus/code_window/blocks/BlockCanvas.cs" id="6_l0xyp"]
 [ext_resource type="Resource" uid="uid://xi2o7k6555wl" path="res://world/chunks/stone.tres" id="8_stone"]
 
@@ -21,7 +21,16 @@ Definitions = [ExtResource("8_stone"), ExtResource("4_l0xyp")]
 Target = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1206639540]
-script = ExtResource("4_p68gx")
+script = ExtResource("6_dn2vf")
+
+[node name="MainMenuButton" type="Button" parent="CanvasLayer" unique_id=52241845]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.0
+offset_bottom = 31.0
+grow_horizontal = 0
+text = "Main Menu"
 
 [node name="CodeWindowContainer" type="PanelContainer" parent="CanvasLayer" unique_id=880314405]
 anchors_preset = 8

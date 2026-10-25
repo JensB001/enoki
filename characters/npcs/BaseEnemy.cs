@@ -2,7 +2,7 @@ using Godot;
 using Enoki.gui.menus.code_window.blocks;
 using System.Threading.Tasks;
 
-public partial class BaseEnemy : CharacterBody2D
+public partial class BaseEnemy : CharacterBody2D, IDamageable
 {
 	[Export] public int Speed { get; set; } = 410; // How fast the player will move (pixels/sec).
 	[Export] public int ScoreValue { get; set; } = 10;
@@ -11,7 +11,7 @@ public partial class BaseEnemy : CharacterBody2D
 	public Player Target { get; set; }
 	public AnimatedSprite2D animatedSprite2D;
 	MovementComponent Movement { get; set; }
-	HealthComponent Health { get; set; }
+	[Export] HealthComponent Health { get; set; }
 
 	public override void _Ready()
 	{
@@ -25,6 +25,11 @@ public partial class BaseEnemy : CharacterBody2D
 		Health.Died += OnDied;
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+	}
+
+	public void TakeDamage(DamageInfo damage)
+	{
+		Health.TakeDamage(damage);
 	}
 	
 	private void OnDied() {

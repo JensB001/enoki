@@ -18,18 +18,7 @@ public partial class AddBlock : CanvasLayer
 	{
 	}
 
-	private void OnAddBlockButtonPressed()
-	{
-		var attributes = Enum.GetValues<AttributeType>();
-
-		Block block = Random.Shared.Next(4) switch
-		{
-			0 => new NumberBlock { Value = Random.Shared.Next(1, 6) },
-			1 => new AttributeBlock { Value = attributes[Random.Shared.Next(attributes.Length)] },
-			2 => new AdderBlock(),
-			_ => new MultiplierBlock(),
-		};
-
-		GetNode<BlockCanvas>("CodeWindowContainer/VBoxContainer/BlockCanvas").Spawn(block);
+	private void OnAddBlockButtonPressed() {
+		GetNode<BlockCanvas>("CodeWindowContainer/VBoxContainer/BlockCanvas").Spawn(BlockFactory.CreateRandom());
 	}
 }

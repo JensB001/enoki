@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8y4sxemxvt5m"]
 
 [ext_resource type="PackedScene" uid="uid://bc75fiumk1yka" path="res://world/ChunkManager.tscn" id="2_p68gx"]
-[ext_resource type="PackedScene" uid="uid://c25v3bmduov7o" path="res://characters/Player/Player.tscn" id="2_yc0c3"]
+[ext_resource type="PackedScene" uid="uid://c25v3bmduov7o" path="res://characters/Player/player.tscn" id="2_yc0c3"]
 [ext_resource type="PackedScene" uid="uid://ikaycm4wsknd" path="res://characters/god/God.tscn" id="3_kxwc8"]
 [ext_resource type="Resource" uid="uid://c34m8nvph0agk" path="res://world/chunks/mildgrass.tres" id="4_l0xyp"]
 [ext_resource type="Script" uid="uid://kahsemfrpy8t" path="res://gui/menus/code_window/CodeWindowContainer.cs" id="5_gqrb7"]
@@ -12,8 +12,13 @@
 [ext_resource type="Resource" uid="uid://xi2o7k6555wl" path="res://world/chunks/stone.tres" id="8_stone"]
 [ext_resource type="Resource" uid="uid://5koaf68si3hl" path="res://world/chunks/lotgrass.tres" id="9_lotgrass"]
 [ext_resource type="Resource" path="res://world/chunks/sandpatch.tres" id="10_sandpatch"]
+[ext_resource type="Script" uid="uid://cvckaigmj5t1v" path="res://world/CanvasLayer2.cs" id="10_sxjpj"]
 [ext_resource type="Resource" path="res://world/chunks/autumn.tres" id="11_autumn"]
 [ext_resource type="Resource" path="res://world/chunks/grove.tres" id="12_grove"]
+[ext_resource type="Script" uid="uid://b24sa6hrldjjj" path="res://world/ProgressBar.cs" id="16_v1iyv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0tsup"]
+bg_color = Color(0.89731616, 0.2221227, 0.067763664, 1)
 
 [node name="GameScreen" type="Node2D" unique_id=1151091540]
 
@@ -102,5 +107,5 @@ layout_mode = 2
 [node name="HealthBar" type="ProgressBar" parent="CanvasLayer2/MarginContainer/VBoxContainer" unique_id=1840112154]
 custom_minimum_size = Vector2(250, 24)
 layout_mode = 2
-theme_override_styles/fill = SubResource("StyleBoxFlat_sxjpj")
-script = ExtResource("11_5ltty")
+theme_override_styles/fill = SubResource("StyleBoxFlat_0tsup")
+script = ExtResource("16_v1iyv")

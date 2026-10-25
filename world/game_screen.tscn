@@ -21,6 +21,7 @@
 bg_color = Color(0.89731616, 0.2221227, 0.067763664, 1)
 
 [node name="GameScreen" type="Node2D" unique_id=1151091540]
+y_sort_enabled = true
 
 [node name="Player" parent="." unique_id=1853275132 instance=ExtResource("2_yc0c3")]
 position = Vector2(574, 328)
@@ -81,6 +82,14 @@ script = ExtResource("6_l0xyp")
 offset_right = 8.0
 offset_bottom = 8.0
 text = "AddBlock"
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=1367098918]
+offset_left = 1075.0
+offset_top = 27.0
+offset_right = 1136.0
+offset_bottom = 50.0
+text = "Score: 0"
+horizontal_alignment = 1
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1123217841 node_paths=PackedStringArray("HealthBar")]
 script = ExtResource("10_sxjpj")

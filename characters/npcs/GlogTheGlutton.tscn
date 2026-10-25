@@ -40,17 +40,23 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bat26"]
-radius = 6.0
-height = 16.0
+radius = 17.0
+height = 36.0
 
 [node name="GlogTheGlutton" type="CharacterBody2D" unique_id=1911579388]
 z_index = 2
 script = ExtResource("1_0yfx6")
+collision_layer = 4
+collision_mask = 7
+SeparationRadius = 44.0
+KnockbackMultiplier = 0.25
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=597170440]
+position = Vector2(0, -23)
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_7p1mr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1934013166]
+position = Vector2(0, -21)
 shape = SubResource("CapsuleShape2D_bat26")

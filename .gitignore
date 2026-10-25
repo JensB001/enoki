@@ -1,5 +1,4 @@
 # Godot 4+ specific ignores
-Asset/*.import
 .editorconfig
 .godot/
 .vscode/
@@ -8,3 +7,4 @@ Asset/*.import
 .import
 
 Enoki.csproj
+.DS_Store

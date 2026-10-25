@@ -10,6 +10,7 @@ public partial class AddBlock : CanvasLayer
 	public override void _Ready()
 	{
 		var addBlockButton = GetNode<Button>("AddBlock");
+		addBlockButton.FocusMode = Control.FocusModeEnum.None;
 		addBlockButton.Pressed += OnAddBlockButtonPressed;
 	}
 

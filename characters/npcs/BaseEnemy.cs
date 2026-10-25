@@ -1,9 +1,13 @@
 using Godot;
-using System;
+using Enoki.gui.menus.code_window.blocks;
 
 public partial class BaseEnemy : CharacterBody2D
 {
 	[Export] public int Speed { get; set; } = 410; // How fast the player will move (pixels/sec).
+	[Export] public int ScoreValue { get; set; } = 10;
+	[Export(PropertyHint.Range, "0,1,0.01")] public float DropChance { get; set; } = 0.25f;
+	[Export] public float MaxHealth { get; set; } = 3;
+	private float _health;
 
 	public Player Target { get; set; }
 	public AnimatedSprite2D animatedSprite2D;
@@ -11,10 +15,29 @@ public partial class BaseEnemy : CharacterBody2D
 
 	public override void _Ready()
 	{
+		_health = MaxHealth;
 		Movement ??= new MovementComponent();
 		AddChild(Movement);
 		Movement.Body = this;
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+	}
+	
+	public void TakeDamage(DamageInfo damage)
+	{
+		_health -= damage.Physical + damage.Fire + damage.Ice;
+		if (_health <= 0) {
+			Die();
+		}
+	}
+	
+	private void Die() {
+		GameState.Instance.AddScore(ScoreValue);
+
+		if (GD.Randf() < DropChance) {
+			GameState.Instance.DropUpgrade(BlockFactory.CreateRandom());
+		}
+
+		QueueFree();
 	}
 
 	public override void _PhysicsProcess(double delta)

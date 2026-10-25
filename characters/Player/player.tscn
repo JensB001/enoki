@@ -52,6 +52,7 @@ radius = 9.0
 [node name="Player" type="CharacterBody2D" unique_id=903677202]
 z_index = 2
 script = ExtResource("1_onrkg")
+BulletScene = ExtResource("3_j7dd2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1712862663]
 texture_filter = 1
@@ -66,3 +67,5 @@ shape = SubResource("CapsuleShape2D_4yvre")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=315989851]
 position = Vector2(-1, 1)
+
+[node name="Bullet" parent="." unique_id=1848642379 instance=ExtResource("3_j7dd2")]

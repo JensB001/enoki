@@ -4,6 +4,7 @@
 .vscode/
 /android/
 .idea/
+.import
 
 
 Enoki.csproj

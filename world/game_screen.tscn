@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://8y4sxemxvt5m"]
 
 [ext_resource type="PackedScene" uid="uid://bc75fiumk1yka" path="res://world/ChunkManager.tscn" id="2_p68gx"]
-[ext_resource type="PackedScene" uid="uid://cr474r3qxkf2w" path="res://characters/Player/player.tscn" id="2_yc0c3"]
+[ext_resource type="PackedScene" uid="uid://c25v3bmduov7o" path="res://characters/Player/Player.tscn" id="2_yc0c3"]
 [ext_resource type="PackedScene" uid="uid://ikaycm4wsknd" path="res://characters/god/God.tscn" id="3_kxwc8"]
 [ext_resource type="Resource" uid="uid://c34m8nvph0agk" path="res://world/chunks/mildgrass.tres" id="4_l0xyp"]
 [ext_resource type="Script" uid="uid://kahsemfrpy8t" path="res://gui/menus/code_window/CodeWindowContainer.cs" id="5_gqrb7"]

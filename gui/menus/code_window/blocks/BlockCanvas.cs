@@ -13,6 +13,25 @@ public partial class BlockCanvas : Control {
 	public override void _Ready() {
 		MouseFilter = MouseFilterEnum.Ignore;
 		_window = GetParent().GetParent<Control>();
+
+		Spawn(new ShootBlock());
+		PublishShoot();
+
+		GameState.Instance.UpgradeDropped += Spawn;
+	}
+
+	public override void _ExitTree() {
+		// Unsubscribe, or the event keeps pointing at a freed node
+		if (GameState.Instance != null) {
+			GameState.Instance.UpgradeDropped -= Spawn;
+		}
+	}
+
+	public void PublishShoot() {
+		var shoot = GetChildren().OfType<ShootBlock>().FirstOrDefault();
+		if (shoot != null) {
+			GameState.Instance.SetShootValue(shoot.Evaluate());
+		}
 	}
 
 	public void Spawn(Block block) {
@@ -22,6 +41,8 @@ public partial class BlockCanvas : Control {
 	}
 
 	public bool TryDropIntoSlot(Block block) {
+		if (block is ShootBlock) return false;
+		
 		var mouse = GetGlobalMousePosition();
 		var slot = FindChildren("*", "", true, false)
 			.OfType<BlockSlot>()

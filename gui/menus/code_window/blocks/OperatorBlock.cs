@@ -9,6 +9,10 @@ public abstract partial class OperatorBlock : Block {
 
 	public Block Left => _leftSlot.Block;
 	public Block Right => _rightSlot.Block;
+	
+	protected abstract BlockValue Combine(BlockValue left, BlockValue right);
+
+	public override BlockValue Evaluate() => Combine(Left?.Evaluate(), Right?.Evaluate());
 
 	protected abstract string Symbol { get; }
 

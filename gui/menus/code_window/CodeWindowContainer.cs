@@ -9,6 +9,7 @@ public partial class CodeWindowContainer : PanelContainer {
 	
 	public override void _Ready() {
 		var dragWindowButton = GetNode<Button>("DragWindowButton");
+		dragWindowButton.FocusMode = Control.FocusModeEnum.None;
 		dragWindowButton.ButtonDown += OnDragWindowButtonDown;
 		dragWindowButton.ButtonUp += OnDragWindowButtonUp;
 

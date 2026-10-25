@@ -7,6 +7,8 @@ public partial class NumberBlock : Block {
 	public float Value { get; set; }
 
 	protected override Color BlockColor => new("59c059");
+	
+	public override BlockValue Evaluate() => BlockValue.FromScalar(Value);
 
 	public override void _Ready() {
 		base._Ready();

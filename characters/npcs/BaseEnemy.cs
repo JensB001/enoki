@@ -2,7 +2,6 @@ using Godot;
 
 public partial class BaseEnemy : CharacterBody2D, IDamageable
 {
-	[Export] public int Speed { get; set; } = 410; // How fast the player will move (pixels/sec).
 	[Export] public int ScoreValue { get; set; } = 10;
 	[Export(PropertyHint.Range, "0,1,0.01")] public float DropChance { get; set; } = 0.25f;
 
@@ -10,18 +9,20 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 	public AnimatedSprite2D animatedSprite2D;
 	MovementComponent Movement { get; set; }
 	[Export] HealthComponent Health { get; set; }
+	protected virtual int MaxHealth => 0;
+	protected virtual int Speed => 0;
 	RarityComponent Rarity { get; set; }
 
 	public override void _Ready()
 	{
 		Movement ??= new MovementComponent();
-		Health ??= new HealthComponent();
 		Rarity ??= new RarityComponent();
+		Health ??= new HealthComponent();
 		
 		AddChild(Movement);
 		Movement.Body = this;
 
-		Health.MaxHealth = 3;
+		Health.MaxHealth = MaxHealth;
 		Health.Died += OnDied;
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");

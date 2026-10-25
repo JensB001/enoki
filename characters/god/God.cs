@@ -19,10 +19,12 @@ public partial class God : Node
     {
         if (!IsInstanceValid(Target)) return;
 
-        var enemy = EnemyScene.Instantiate<BaseEnemy>();
-        AddChild(enemy);
-        enemy.Target = Target;
-        enemy.GlobalPosition = Target.GlobalPosition
+        var enemy_chimkn = EnemyScene.Instantiate<Chimkn>();
+        // var enemy_
+
+        AddChild(enemy_chimkn);
+        enemy_chimkn.Target = Target;
+        enemy_chimkn.GlobalPosition = Target.GlobalPosition
             + Vector2.Right.Rotated(GD.Randf() * Mathf.Tau) * SpawnRadius;
     }
 }

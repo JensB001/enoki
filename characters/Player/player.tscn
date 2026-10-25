@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cr474r3qxkf2w"]
 
 [ext_resource type="Script" uid="uid://bpwdii784rjwd" path="res://characters/Player/Player.cs" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://ck0p6a32vfpsh" path="res://asset/mosquit-Sheet.PNG" id="2_j341n"]
+[ext_resource type="Texture2D" uid="uid://ck0p6a32vfpsh" path="res://Asset/mosquit-Sheet.PNG" id="2_j341n"]
 [ext_resource type="PackedScene" uid="uid://bjv08x0rvqxjk" path="res://characters/projectiles/bullet.tscn" id="3_j7dd2"]
+[ext_resource type="Script" uid="uid://by7b06keqwgmv" path="res://characters/Player/HitBox.cs" id="4_yrol7"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cue0d"]
 atlas = ExtResource("2_j341n")
@@ -48,7 +49,11 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4yvre"]
-radius = 9.0
+radius = 5.0
+height = 14.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4r1u5"]
+radius = 11.0
 
 [node name="Player" type="CharacterBody2D" unique_id=903677202]
 z_index = 3
@@ -57,7 +62,6 @@ BulletScene = ExtResource("3_j7dd2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1712862663]
 texture_filter = 1
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_4yvre")
 frame_progress = 0.804146
 speed_scale = 2.0
@@ -68,5 +72,14 @@ shape = SubResource("CapsuleShape2D_4yvre")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=315989851]
 position = Vector2(-1, 1)
+zoom = Vector2(3, 3)
 
 [node name="Bullet" parent="." unique_id=1848642379 instance=ExtResource("3_j7dd2")]
+position = Vector2(20, 2)
+
+[node name="HitBox" type="Area2D" parent="." unique_id=272612953]
+script = ExtResource("4_yrol7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" unique_id=1726629539]
+position = Vector2(-4, 0)
+shape = SubResource("CapsuleShape2D_4r1u5")

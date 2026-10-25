@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gdijtbl2g06e"
-path="res://.godot/imported/mosquit-Sheet.PNG-41344d1cf708fe44cf62bc09377cc249.ctex"
+uid="uid://b4n23jd6jipav"
+path="res://.godot/imported/Sprite-0004-Sheet-Sheet.png-847e707a02e6526a25258398936ab2a6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/mosquit-Sheet.PNG"
-dest_files=["res://.godot/imported/mosquit-Sheet.PNG-41344d1cf708fe44cf62bc09377cc249.ctex"]
+source_file="res://Asset/Sprite-0004-Sheet-Sheet.png"
+dest_files=["res://.godot/imported/Sprite-0004-Sheet-Sheet.png-847e707a02e6526a25258398936ab2a6.ctex"]
 
 [params]
 

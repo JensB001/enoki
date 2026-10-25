@@ -6,13 +6,22 @@ public partial class HealthComponent : Node, IDamageable
 {
 	[Signal] public delegate void DiedEventHandler();
 
-	[Export] public float MaxHealth { get; set; }
-	private float _health;
+	private float _MaxHealth;
+
+	[Export] public float MaxHealth { 
+		get => _MaxHealth; 
+		set
+		{
+			_MaxHealth = value;
+			Health = value;
+		}
+	}
+	
+	public float Health {get; private set;}
 	public bool isDead = false;
 
     public override void _Ready()
 	{
-		_health = MaxHealth;
 	}
 
 
@@ -20,8 +29,11 @@ public partial class HealthComponent : Node, IDamageable
 	{
 		if (isDead) return;
 
-		_health -= damage.Physical + damage.Fire + damage.Ice;
-		if (_health <= 0)
+		Health -= damage.Physical + damage.Fire + damage.Ice;
+
+		GD.Print($"Health after hit: {Health}/{MaxHealth}");
+
+		if (Health <= 0)
 		{
 			isDead = true;
 		}

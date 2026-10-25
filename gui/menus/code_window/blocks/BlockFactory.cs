@@ -23,23 +23,23 @@ public static class BlockFactory
 	}
 
 	private static readonly Dictionary<Rarity, Func<Block>[]> Pools = new()
-    {
-        [Rarity.Common] =
-        [
-            () => Number(1, 3),
-            () => Attribute(),
-        ],
-        [Rarity.Uncommon] =
-        [
-            () => Number(4, 5),
-            () => new AdderBlock()
-        ],
-        [Rarity.Rare] =
-        [
-            () => Number(6, 9),
-            () => new MultiplierBlock(),
-        ],
-    };
+	{
+		[Rarity.Common] =
+		[
+			() => Number(1, 3),
+			() => Attribute(),
+		],
+		[Rarity.Uncommon] =
+		[
+			() => Number(4, 5),
+			() => new AdderBlock()
+		],
+		[Rarity.Rare] =
+		[
+			() => Number(6, 9),
+			() => new MultiplierBlock(),
+		],
+	};
 
 	public static Block CreateRandom(Rarity rarity) {
 		var pool = Pools[rarity];

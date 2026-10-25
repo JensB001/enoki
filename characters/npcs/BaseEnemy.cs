@@ -13,6 +13,14 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 	protected virtual int Speed => 0;
 	RarityComponent Rarity { get; set; }
 
+	private double _attackCooldown;
+
+	public float PhysicalDamage { get; set; } = 5;
+	public float FireDamage { get; set; }
+	public float IceDamage { get; set; }
+
+	[Export] public double AttackInterval { get; set; } = 0.5;
+
 	public override void _Ready()
 	{
 		Movement ??= new MovementComponent();
@@ -41,10 +49,29 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 		QueueFree();
 	}
 
+	private void CheckPlayerCollision()
+	{
+		if (_attackCooldown > 0) return;
+
+		for (int i = 0; i < GetSlideCollisionCount(); i++)
+		{
+			if (GetSlideCollision(i).GetCollider() is Player player && player is IDamageable target)
+			{
+				target.TakeDamage(new DamageInfo(PhysicalDamage, FireDamage, IceDamage));
+				_attackCooldown = AttackInterval;
+				break;
+			}
+		}
+	}
+
 	public override void _PhysicsProcess(double delta)
 	{
+		if (_attackCooldown > 0) _attackCooldown -= delta;
+
 		if (!IsInstanceValid(Target)) return;
 		Movement.Move(GlobalPosition.DirectionTo(Target.GlobalPosition), Speed);
+
+		CheckPlayerCollision();
 
 		if (Movement.Body.Velocity.X != 0)
 		{

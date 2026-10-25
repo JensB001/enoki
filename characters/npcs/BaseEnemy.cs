@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 public partial class BaseEnemy : CharacterBody2D, IDamageable
 {
-	[Export] public int Speed { get; set; } = 410; // How fast the player will move (pixels/sec).
+	[Export] public int Speed { get; set; } = 128; // How fast the player will move (pixels/sec).
 	[Export] public int ScoreValue { get; set; } = 10;
 	[Export(PropertyHint.Range, "0,1,0.01")] public float DropChance { get; set; } = 0.25f;
 

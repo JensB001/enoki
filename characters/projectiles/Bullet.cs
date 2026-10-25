@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Bullet : Area2D {
 
-	[Export] public float Speed { get; set; } = 600;
+	[Export] public float Speed { get; set; } = 128;
 	[Export] public float Lifetime { get; set; } = 3;
 
 	public Vector2 Direction { get; set; } = Vector2.Right;

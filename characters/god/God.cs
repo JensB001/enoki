@@ -3,7 +3,7 @@ using System;
 
 public partial class God : Node
 {
-    [Export] public PackedScene EnemyScene { get; set; }
+    [Export] public PackedScene EnemyChimknScene { get; set; }
     [Export] public Player Target { get; set; }
     [Export] public float Interval { get; set; } = 2f;
     [Export] public float SpawnRadius { get; set; } = 800f;
@@ -19,7 +19,7 @@ public partial class God : Node
     {
         if (!IsInstanceValid(Target)) return;
 
-        var enemy_chimkn = EnemyScene.Instantiate<Chimkn>();
+        var enemy_chimkn = EnemyChimknScene.Instantiate<Chimkn>();
         // var enemy_
 
         AddChild(enemy_chimkn);

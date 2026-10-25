@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://c34m8nvph0agk" path="res://world/chunks/mildgrass.tres" id="4_l0xyp"]
 [ext_resource type="Script" uid="uid://cgforeiv8tmna" path="res://gui/menus/code_window/AddBlock.cs" id="4_p68gx"]
 [ext_resource type="Script" uid="uid://kahsemfrpy8t" path="res://gui/menus/code_window/CodeWindowContainer.cs" id="5_gqrb7"]
+[ext_resource type="PackedScene" uid="uid://382jkw3yrn5y" path="res://characters/npcs/chimkn.tscn" id="6_dn2vf"]
 [ext_resource type="Script" uid="uid://b8kb3pttomcqy" path="res://gui/menus/code_window/blocks/BlockCanvas.cs" id="6_l0xyp"]
 [ext_resource type="Resource" uid="uid://xi2o7k6555wl" path="res://world/chunks/stone.tres" id="8_stone"]
 
@@ -18,6 +19,7 @@ position = Vector2(574, 328)
 Definitions = [ExtResource("8_stone"), ExtResource("4_l0xyp")]
 
 [node name="God" parent="." unique_id=1840092192 node_paths=PackedStringArray("Target") instance=ExtResource("3_kxwc8")]
+EnemyChimknScene = ExtResource("6_dn2vf")
 Target = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1206639540]

@@ -1,3 +1,71 @@
-[gd_scene format=3 uid="uid://bfpnf1lgda1wx"]
+[gd_scene format=3 uid="uid://382jkw3yrn5y"]
 
-[node name="Chimkn" type="Node2D" unique_id=800234999]
+[ext_resource type="Script" uid="uid://conkbi7b6tpo" path="res://characters/npcs/Chimkn.cs" id="1_31v4f"]
+[ext_resource type="Texture2D" uid="uid://qfjgbt4nhpak" path="res://Asset/chimkn.PNG" id="2_h6asq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yqxa4"]
+atlas = ExtResource("2_h6asq")
+region = Rect2(0, 0, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_485vr"]
+atlas = ExtResource("2_h6asq")
+region = Rect2(16, 0, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fs4k0"]
+atlas = ExtResource("2_h6asq")
+region = Rect2(32, 0, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bny3l"]
+atlas = ExtResource("2_h6asq")
+region = Rect2(48, 0, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_no4mc"]
+atlas = ExtResource("2_h6asq")
+region = Rect2(64, 0, 16, 15)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lxnq"]
+atlas = ExtResource("2_h6asq")
+region = Rect2(80, 0, 16, 15)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_h6asq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yqxa4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_485vr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fs4k0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bny3l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_no4mc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lxnq")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pwwkc"]
+radius = 9.0
+
+[node name="Chimkn" type="CharacterBody2D" unique_id=1498186018]
+z_index = 2
+script = ExtResource("1_31v4f")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1930164708]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_h6asq")
+speed_scale = 2.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1869544021]
+position = Vector2(-1, 1)
+shape = SubResource("CapsuleShape2D_pwwkc")

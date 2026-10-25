@@ -13,6 +13,7 @@ public partial class BlockCanvas : Control {
 	public override void _Ready() {
 		MouseFilter = MouseFilterEnum.Ignore;
 		_window = GetParent().GetParent<Control>();
+		Spawn(new ShootBlock());
 	}
 
 	public void Spawn(Block block) {
@@ -22,6 +23,8 @@ public partial class BlockCanvas : Control {
 	}
 
 	public bool TryDropIntoSlot(Block block) {
+		if (block is ShootBlock) return false;
+		
 		var mouse = GetGlobalMousePosition();
 		var slot = FindChildren("*", "", true, false)
 			.OfType<BlockSlot>()

@@ -8,6 +8,8 @@ public abstract partial class Block : PanelContainer {
 	private Vector2 _grabOffset;
 
 	protected abstract Color BlockColor { get; }
+	
+	public abstract BlockValue Evaluate();
 
 	public override void _Ready() {
 		var style = new StyleBoxFlat();

@@ -14,11 +14,6 @@ public partial class AddBlock : CanvasLayer
 		addBlockButton.Pressed += OnAddBlockButtonPressed;
 	}
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
-
 	private void OnAddBlockButtonPressed() {
 		GetNode<BlockCanvas>("CodeWindowContainer/VBoxContainer/BlockCanvas").Spawn(BlockFactory.CreateRandom());
 	}

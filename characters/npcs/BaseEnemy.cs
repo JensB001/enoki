@@ -12,11 +12,13 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 	public AnimatedSprite2D animatedSprite2D;
 	MovementComponent Movement { get; set; }
 	[Export] HealthComponent Health { get; set; }
+	RarityComponent Rarity { get; set; }
 
 	public override void _Ready()
 	{
 		Movement ??= new MovementComponent();
 		Health ??= new HealthComponent();
+		Rarity ??= new RarityComponent();
 		
 		AddChild(Movement);
 		Movement.Body = this;
@@ -35,9 +37,7 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 	private void OnDied() {
 		GameState.Instance.AddScore(ScoreValue);
 
-		if (GD.Randf() < DropChance) {
-			GameState.Instance.DropUpgrade(BlockFactory.CreateRandom());
-		}
+		Rarity.Drop();
 
 		QueueFree();
 	}

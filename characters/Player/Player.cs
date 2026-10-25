@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using Enoki.gui.menus.code_window.blocks;
 using Godot;
 
-public partial class Player : CharacterBody2D
+public partial class Player : CharacterBody2D, IDamageable
 {
 	[Export] MovementComponent Movement { get; set; }
 	[Export] public PackedScene BulletScene { get; set; }
@@ -12,15 +12,38 @@ public partial class Player : CharacterBody2D
 	public Vector2 ScreenSize; // Size of the game window.
 	public AnimatedSprite2D animatedSprite2D;
 
+	[Export] HealthComponent Health {get; set;}
+
+	private double _invincible;
+
 	public override void _Ready()
 	{
 		ScreenSize = GetViewportRect().Size;
 
 		Movement ??= new MovementComponent();
+		Health ??= new HealthComponent();
+
 		AddChild(Movement);
 		Movement.Body = this;
-		
+
+		Health.MaxHealth = 50;
+
+		Health.Died += OnDied;
+
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+	}
+
+	public void TakeDamage(DamageInfo damage)
+	{
+		if (_invincible > 0) return;
+
+		_invincible = 0.75;
+
+		Health.TakeDamage(damage);
+	}
+
+	private void OnDied() {
+		GetTree().Quit();
 	}
 	
 	private void Shoot(BlockValue value) {
@@ -42,6 +65,9 @@ public partial class Player : CharacterBody2D
 
 	public override void _PhysicsProcess(double delta)
 	{
+
+		if (_invincible > 0) _invincible -= delta;
+
 		// Reads WASD movement using the configured move_* actions
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 		Movement.Move(inputDir, Speed);

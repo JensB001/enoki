@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ca8xtxa6lsnab"
-path="res://.godot/imported/chimkn.PNG-78d959904c2429744fb211ea6a8b3f2b.ctex"
+path="res://.godot/imported/chimkn.PNG-9c3071ae61f055c8ecc8ced8633633f3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Characters/chimkn.PNG"
-dest_files=["res://.godot/imported/chimkn.PNG-78d959904c2429744fb211ea6a8b3f2b.ctex"]
+source_file="res://asset/chimkn.PNG"
+dest_files=["res://.godot/imported/chimkn.PNG-9c3071ae61f055c8ecc8ced8633633f3.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://f6yuxp71nnkc"]
 
-[ext_resource type="Script" uid="uid://dsnmixfua3dmn" path="res://Characters/npcs/BaseEnemy.cs" id="1_bg2dh"]
-[ext_resource type="Texture2D" uid="uid://ca8xtxa6lsnab" path="res://Characters/chimkn.PNG" id="3_4kc1g"]
+[ext_resource type="Script" uid="uid://dsnmixfua3dmn" path="res://characters/npcs/BaseEnemy.cs" id="1_bg2dh"]
+[ext_resource type="Texture2D" uid="uid://ca8xtxa6lsnab" path="res://asset/chimkn.PNG" id="3_4kc1g"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqxa4"]
 atlas = ExtResource("3_4kc1g")
@@ -60,6 +60,8 @@ radius = 9.0
 script = ExtResource("1_bg2dh")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2134414687]
+z_index = 2
+texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_bg2dh")
 speed_scale = 2.0

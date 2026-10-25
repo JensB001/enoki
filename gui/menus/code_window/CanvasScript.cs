@@ -28,7 +28,7 @@ public partial class CanvasScript : CanvasLayer
 		GameState.Instance.ScoreChanged -= OnScoreChanged;
 	}
 
-	private void OnScoreChanged(int score)
+	private void OnScoreChanged(ulong score)
 	{
 		_scoreLabel.Text = "Score: " + score;
 	}

@@ -4,7 +4,7 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 {
 	protected virtual int Speed => 0;
 	protected virtual int MaxHealth => 0;
-	[Export] public int ScoreValue { get; set; } = 10;
+	[Export] public ulong ScoreValue { get; set; } = 10;
 	
 	[ExportGroup("Status Effects")]
 	[Export] public double BurnDuration { get; set; } = 3.0;

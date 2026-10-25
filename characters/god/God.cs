@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class God : Node
 {
@@ -18,7 +17,7 @@ public partial class God : Node
 	private void Spawn()
 	{
 		if (!IsInstanceValid(Target)) return;
-		
+
 		var enemy_chimkn = EnemyChimknScene.Instantiate<Chimkn>();
 		AddChild(enemy_chimkn);
 		enemy_chimkn.Target = Target;

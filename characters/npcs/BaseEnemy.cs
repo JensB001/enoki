@@ -1,7 +1,7 @@
 using Godot;
 using Enoki.gui.menus.code_window.blocks;
 
-public partial class BaseEnemy : CharacterBody2D
+public partial class BaseEnemy : CharacterBody2D, IDamageable
 {
 	[Export] public int Speed { get; set; } = 410; // How fast the player will move (pixels/sec).
 	[Export] public int ScoreValue { get; set; } = 10;

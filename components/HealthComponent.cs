@@ -4,8 +4,11 @@ using System;
 [GlobalClass]
 public partial class HealthComponent : Node, IDamageable
 {
+	[Signal] public delegate void DiedEventHandler();
+
 	[Export] public float MaxHealth { get; set; }
 	private float _health;
+	public bool isDead = false;
 
     public override void _Ready()
 	{
@@ -15,15 +18,14 @@ public partial class HealthComponent : Node, IDamageable
 
 	public void TakeDamage(DamageInfo damage)
 	{
+		if (isDead) return;
+
 		_health -= damage.Physical + damage.Fire + damage.Ice;
 		if (_health <= 0)
 		{
-			Die();
+			isDead = true;
 		}
-	}
 
-	private void Die()
-	{
-		QueueFree();
+		if (isDead) EmitSignal(SignalName.Died);
 	}
 }

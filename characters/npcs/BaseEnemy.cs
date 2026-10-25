@@ -1,5 +1,6 @@
 using Godot;
 using Enoki.gui.menus.code_window.blocks;
+using System.Threading.Tasks;
 
 public partial class BaseEnemy : CharacterBody2D
 {
@@ -25,23 +26,15 @@ public partial class BaseEnemy : CharacterBody2D
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	}
 	
-	// public void TakeDamage(DamageInfo damage)
-	// {
-	// 	_health -= damage.Physical + damage.Fire + damage.Ice;
-	// 	if (_health <= 0) {
-	// 		Die();
-	// 	}
-	// }
-	
-	// private void Die() {
-	// 	GameState.Instance.AddScore(ScoreValue);
+	private void OnDied() {
+		GameState.Instance.AddScore(ScoreValue);
 
-	// 	if (GD.Randf() < DropChance) {
-	// 		GameState.Instance.DropUpgrade(BlockFactory.CreateRandom());
-	// 	}
+		if (GD.Randf() < DropChance) {
+			GameState.Instance.DropUpgrade(BlockFactory.CreateRandom());
+		}
 
-	// 	QueueFree();
-	// }
+		QueueFree();
+	}
 
 	public override void _PhysicsProcess(double delta)
 	{

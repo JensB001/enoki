@@ -79,5 +79,6 @@ public abstract partial class Block : PanelContainer {
 		var canvas = FindBlockCanvas();
 		canvas.TryDropIntoSlot(this);
 		canvas.FitToBlocks();
+		canvas.PublishShoot();
 	}
 }

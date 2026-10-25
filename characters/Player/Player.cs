@@ -26,7 +26,7 @@ public partial class Player : CharacterBody2D, IDamageable
 		AddChild(Movement);
 		Movement.Body = this;
 
-		Health.MaxHealth = 50;
+		Health.MaxHealth = 150;
 
 		Health.Died += OnDied;
 
@@ -43,7 +43,7 @@ public partial class Player : CharacterBody2D, IDamageable
 	}
 
 	private void OnDied() {
-		GetTree().Quit();
+		GetTree().ChangeSceneToFile("res://gui/menus/main_menu/main_menu.tscn");
 	}
 	
 	private void Shoot(BlockValue value) {
@@ -90,7 +90,7 @@ public partial class Player : CharacterBody2D, IDamageable
 		{
 			animatedSprite2D.Animation = "default";
 			animatedSprite2D.Play();
-		}
+ 		}
 		else
 		{
 			animatedSprite2D.Stop();

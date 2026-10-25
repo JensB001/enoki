@@ -2,7 +2,8 @@ using Godot;
 
 public partial class BaseEnemy : CharacterBody2D, IDamageable
 {
-	[Export] public int Speed { get; set; } = 128; // How fast the player will move (pixels/sec).
+	protected virtual int Speed => 0;
+	protected virtual int MaxHealth => 0;
 	[Export] public int ScoreValue { get; set; } = 10;
 	[Export(PropertyHint.Range, "0,1,0.01")] public float DropChance { get; set; } = 0.25f;
 
@@ -29,7 +30,7 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 		AddChild(Movement);
 		Movement.Body = this;
 
-		Health.MaxHealth = 3;
+		Health.MaxHealth = MaxHealth;
 		Health.Died += OnDied;
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");

@@ -5,10 +5,15 @@
 [ext_resource type="PackedScene" uid="uid://ikaycm4wsknd" path="res://characters/god/God.tscn" id="3_kxwc8"]
 [ext_resource type="Resource" uid="uid://c34m8nvph0agk" path="res://world/chunks/mildgrass.tres" id="4_l0xyp"]
 [ext_resource type="Script" uid="uid://kahsemfrpy8t" path="res://gui/menus/code_window/CodeWindowContainer.cs" id="5_gqrb7"]
-[ext_resource type="PackedScene" uid="uid://f6yuxp71nnkc" path="res://characters/npcs/chimkn.tscn" id="6_0ojpo"]
+[ext_resource type="PackedScene" uid="uid://382jkw3yrn5y" path="res://characters/npcs/chimkn.tscn" id="6_0ojpo"]
 [ext_resource type="Script" uid="uid://cgforeiv8tmna" path="res://gui/menus/code_window/CanvasScript.cs" id="6_dn2vf"]
 [ext_resource type="Script" uid="uid://b8kb3pttomcqy" path="res://gui/menus/code_window/blocks/BlockCanvas.cs" id="6_l0xyp"]
 [ext_resource type="Resource" uid="uid://xi2o7k6555wl" path="res://world/chunks/stone.tres" id="8_stone"]
+[ext_resource type="Script" uid="uid://cvckaigmj5t1v" path="res://world/CanvasLayer2.cs" id="10_sxjpj"]
+[ext_resource type="Script" uid="uid://b24sa6hrldjjj" path="res://world/ProgressBar.cs" id="11_5ltty"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxjpj"]
+bg_color = Color(0.8244379, 0.23638326, 0.0037802854, 1)
 
 [node name="GameScreen" type="Node2D" unique_id=1151091540]
 
@@ -70,3 +75,31 @@ script = ExtResource("6_l0xyp")
 offset_right = 8.0
 offset_bottom = 8.0
 text = "AddBlock"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1123217841 node_paths=PackedStringArray("HealthBar")]
+script = ExtResource("10_sxjpj")
+HealthBar = NodePath("MarginContainer/VBoxContainer/HealthBar")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer2" unique_id=1534370310]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -282.0
+offset_top = -59.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer2/MarginContainer" unique_id=2053664240]
+layout_mode = 2
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer2/MarginContainer/VBoxContainer" unique_id=1840112154]
+custom_minimum_size = Vector2(250, 24)
+layout_mode = 2
+theme_override_styles/fill = SubResource("StyleBoxFlat_sxjpj")
+script = ExtResource("11_5ltty")

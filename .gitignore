@@ -1,10 +1,9 @@
 # Godot 4+ specific ignores
+Asset/*.import
 .editorconfig
 .godot/
 .vscode/
 /android/
 .idea/
-.import
-
 
 Enoki.csproj

@@ -55,9 +55,10 @@ public partial class Player : CharacterBody2D, IDamageable
 
 		for (var i = 0; i < count; i++) {
 			var bullet = BulletScene.Instantiate<Bullet>();
-			GetParent().AddChild(bullet);              // add first, then position
+			GetParent().AddChild(bullet);
 			bullet.GlobalPosition = GlobalPosition;
 			bullet.Direction = aim.Rotated((i - (count - 1) / 2f) * 0.15f);
+			bullet.InheritedVelocity = Velocity;   // new
 			bullet.FireDamage = fire;
 			bullet.IceDamage = ice;
 		}

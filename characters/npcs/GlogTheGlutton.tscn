@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://v832bsdtjcjw"]
+
+[ext_resource type="Script" uid="uid://3a0fgdbybvrp" path="res://characters/npcs/GlogTheGlutton.cs" id="1_0yfx6"]
+[ext_resource type="Texture2D" uid="uid://cw8lgy5k316ay" path="res://asset/glog-the-glutton-sheet.png" id="1_6tkln"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0yfx6"]
+atlas = ExtResource("1_6tkln")
+region = Rect2(0, 0, 128, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d4sk2"]
+atlas = ExtResource("1_6tkln")
+region = Rect2(128, 0, 128, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjtc3"]
+atlas = ExtResource("1_6tkln")
+region = Rect2(256, 0, 128, 101)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ny2j7"]
+atlas = ExtResource("1_6tkln")
+region = Rect2(384, 0, 128, 101)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7p1mr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0yfx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d4sk2")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_xjtc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ny2j7")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bat26"]
+radius = 6.0
+height = 16.0
+
+[node name="GlogTheGlutton" type="CharacterBody2D" unique_id=1911579388]
+z_index = 2
+script = ExtResource("1_0yfx6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=597170440]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_7p1mr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1934013166]
+shape = SubResource("CapsuleShape2D_bat26")

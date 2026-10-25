@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ChunkDefinition" format=3]
+
+[ext_resource type="Script" uid="uid://cx2upq1wuvdss" path="res://world/chunks/ChunkDefinition.cs" id="1_lf1d5"]
+[ext_resource type="PackedScene" path="res://world/chunks/autumn.tscn" id="2_scene"]
+
+[resource]
+script = ExtResource("1_lf1d5")
+Scene = ExtResource("2_scene")
+Weight = 0.7
+IsFiller = true
+metadata/_custom_type_script = "uid://cx2upq1wuvdss"

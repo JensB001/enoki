@@ -22,6 +22,7 @@ public partial class BaseEnemy : CharacterBody2D
 		Movement.Body = this;
 
 		Health.MaxHealth = 3;
+		Health.Died += OnDied;
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	}

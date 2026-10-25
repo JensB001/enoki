@@ -20,6 +20,14 @@ public partial class GameState : Node {
 
 	public override void _Ready() => Instance = this;
 
+	/// <summary>Called when a new game starts; GameState is an autoload, so it outlives each run.</summary>
+	public void ResetRun() {
+		Score = 0;
+		Round = 1;
+		ScoreChanged?.Invoke(Score);
+		RoundChanged?.Invoke(Round);
+	}
+
 	public void SetShootValue(BlockValue value) {
 		ShootValue = value;
 		ShootValueChanged?.Invoke(value);

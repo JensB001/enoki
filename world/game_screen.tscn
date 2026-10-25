@@ -21,6 +21,7 @@
 bg_color = Color(0.89731616, 0.2221227, 0.067763664, 1)
 
 [node name="GameScreen" type="Node2D" unique_id=1151091540]
+y_sort_enabled = true
 
 [node name="Player" parent="." unique_id=1853275132 instance=ExtResource("2_yc0c3")]
 position = Vector2(574, 328)

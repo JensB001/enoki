@@ -24,6 +24,7 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 	[Export] HealthComponent Health { get; set; }
 	RarityComponent Rarity { get; set; }
 	protected virtual float DropChance => 0f;
+	SpriteFxComponent SpriteFx { get; set; }
 
 	private double _attackCooldown;
 	
@@ -41,8 +42,24 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 
 	[Export] public double AttackInterval { get; set; } = 0.5;
 
+	[ExportGroup("Crowding")]
+	[Export] public float SeparationRadius { get; set; } = 20;   // roughly the enemy's width
+	[Export] public float SeparationStrength { get; set; } = 1.5f;
+
+	[ExportGroup("Knockback")]
+	[Export] public float KnockbackMultiplier { get; set; } = 1;  // lower = heavier
+	[Export] public float PlayerKnockback { get; set; } = 140;    // how hard we bump the player
+
+	/// <summary>Enemies this far from the player are removed (well beyond where God spawns them, just off screen).</summary>
+	[Export] public float DespawnDistance { get; set; } = 700;
+
+	private const string EnemyGroup = "enemies";
+
 	public override void _Ready()
 	{
+		AddToGroup(EnemyGroup);
+		MotionMode = MotionModeEnum.Floating; // top-down: slide off each other instead of "landing" on them
+
 		Movement ??= new MovementComponent();
 		Health ??= new HealthComponent();
 		Rarity ??= new RarityComponent();
@@ -56,10 +73,21 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 		Rarity.DropChance = DropChance;
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
+		SpriteFx = new SpriteFxComponent { Sprite = animatedSprite2D };
+		AddChild(SpriteFx);
+	}
+
+	public void ApplyKnockback(Vector2 impulse)
+	{
+		if (IsFrozen) return; // frozen solid
+
+		Movement.ApplyKnockback(impulse * KnockbackMultiplier);
 	}
 
 	public void TakeDamage(DamageInfo damage)
 	{
+		SpriteFx.Flash();
 		Health.TakeDamage(damage);
 
 		// Don't apply effects if that hit killed us
@@ -152,11 +180,32 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 		{
 			if (GetSlideCollision(i).GetCollider() is Player player && player is IDamageable target)
 			{
+				player.ApplyKnockback(GlobalPosition.DirectionTo(player.GlobalPosition) * PlayerKnockback);
 				target.TakeDamage(new DamageInfo(PhysicalDamage, FireDamage, IceDamage));
 				_attackCooldown = AttackInterval;
 				break;
 			}
 		}
+	}
+
+	/// <summary>Push away from nearby enemies so crowds spread out instead of jamming in a line.</summary>
+	private Vector2 Separation()
+	{
+		var push = Vector2.Zero;
+
+		foreach (Node node in GetTree().GetNodesInGroup(EnemyGroup))
+		{
+			if (node == this || node is not BaseEnemy other) continue;
+
+			float range = (SeparationRadius + other.SeparationRadius) * 0.5f;
+			Vector2 offset = GlobalPosition - other.GlobalPosition;
+			float dist = offset.Length();
+			if (dist >= range || dist == 0) continue;
+
+			push += offset / dist * (1 - dist / range); // stronger the closer they are
+		}
+
+		return push * SeparationStrength;
 	}
 
 	public override void _PhysicsProcess(double delta)
@@ -174,7 +223,18 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 		}
 
 		if (!IsInstanceValid(Target)) return;
-		Movement.Move(GlobalPosition.DirectionTo(Target.GlobalPosition), Speed);
+
+		if (GlobalPosition.DistanceSquaredTo(Target.GlobalPosition) > DespawnDistance * DespawnDistance)
+		{
+			QueueFree(); // fell far behind; God keeps spawning new ones near the player
+			return;
+		}
+
+		var direction = GlobalPosition.DirectionTo(Target.GlobalPosition) + Separation();
+
+		// Staggered while being knocked back: regain control as the knockback fades.
+		float control = 1 - Mathf.Clamp(Movement.Knockback.Length() / Mathf.Max(Speed, 1), 0, 1);
+		Movement.Move(direction.LimitLength(1) * control, Speed);
 
 		CheckPlayerCollision();
 
@@ -182,7 +242,7 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 		{
 			animatedSprite2D.Animation = "default";
 			animatedSprite2D.FlipV = false;
-			animatedSprite2D.FlipH = Movement.Body.Velocity.X > 0;
+			animatedSprite2D.FlipH = direction.X > 0; // face the player, even while knocked back
 			animatedSprite2D.Play();
 		}
 		else if (Movement.Body.Velocity.Y != 0)

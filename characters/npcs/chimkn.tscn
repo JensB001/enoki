@@ -58,8 +58,10 @@ radius = 6.0
 height = 16.0
 
 [node name="Chimkn" type="CharacterBody2D" unique_id=1781070394]
-z_index = 3
+z_index = 2
 script = ExtResource("1_31v4f")
+collision_layer = 4
+collision_mask = 7
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2134414687]
 texture_filter = 1

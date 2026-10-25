@@ -2,8 +2,9 @@ using Godot;
 
 public partial class Bullet : Area2D {
 
-	[Export] public float Speed { get; set; } = 128;
+	[Export] public float Speed { get; set; } = 300;
 	[Export] public float Lifetime { get; set; } = 3;
+	[Export] public float Knockback { get; set; } = 220;
 
 	public Vector2 Direction { get; set; } = Vector2.Right;
 	public Vector2 InheritedVelocity { get; set; } = Vector2.Zero;
@@ -17,6 +18,8 @@ public partial class Bullet : Area2D {
 		BodyEntered += OnBodyEntered;
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("Sprite2D");
+
+		AddChild(new SpriteFxComponent { Sprite = animatedSprite2D });
 	}
 
 	public override void _PhysicsProcess(double delta) {
@@ -55,6 +58,10 @@ public partial class Bullet : Area2D {
 			return;
 		}
 
+
+		if (body is BaseEnemy enemy) {
+			enemy.ApplyKnockback(Direction.Normalized() * Knockback);
+		}
 
 		if (body is IDamageable target) {
 			target.TakeDamage(new DamageInfo(PhysicalDamage, FireDamage, IceDamage));

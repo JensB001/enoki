@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bjv08x0rvqxjk"]
+
+[ext_resource type="Script" uid="uid://cx2na7ir66h08" path="res://characters/projectiles/Bullet.cs" id="1_wllkp"]
+[ext_resource type="Texture2D" uid="uid://calq0aidgwa4y" path="res://asset/bullets-sheet.png" id="2_wllkp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ks3ii"]
+atlas = ExtResource("2_wllkp")
+region = Rect2(0, 0, 8, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tl1gy"]
+atlas = ExtResource("2_wllkp")
+region = Rect2(0, 8, 8, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lbja3"]
+atlas = ExtResource("2_wllkp")
+region = Rect2(0, 4, 8, 4)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4yvre"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ks3ii")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tl1gy")
+}],
+"loop": 1,
+"name": &"fire",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lbja3")
+}],
+"loop": 1,
+"name": &"ice",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m2y2t"]
+radius = 3.0
+
+[node name="Bullet" type="Area2D" unique_id=1848642379]
+z_index = 2
+script = ExtResource("1_wllkp")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="." unique_id=2069176163]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_4yvre")
+animation = &"ice"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=762067225]
+shape = SubResource("CircleShape2D_m2y2t")

@@ -6,10 +6,6 @@ public enum AttributeType {
 	Bullet,
 	Fire,
 	Ice,
-	MoveUp,
-	MoveDown,
-	MoveLeft,
-	MoveRight,
 }
 
 public partial class AttributeBlock : Block {

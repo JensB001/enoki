@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://f6yuxp71nnkc"]
 
-[ext_resource type="Script" uid="uid://bf4jnqgaiu7wy" path="res://characters/npcs/Chimkn.cs" id="1_31v4f"]
-[ext_resource type="Texture2D" uid="uid://qfjgbt4nhpak" path="res://Asset/chimkn.PNG" id="2_h6asq"]
+[ext_resource type="Script" uid="uid://bv8dpthoi5oft" path="res://characters/npcs/Chimkn.cs" id="1_31v4f"]
+[ext_resource type="Texture2D" uid="uid://qfjgbt4nhpak" path="res://asset/chimkn.PNG" id="2_h6asq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yqxa4"]
 atlas = ExtResource("2_h6asq")
@@ -61,8 +61,8 @@ z_index = 3
 script = ExtResource("1_31v4f")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=2134414687]
+z_index = 2
 texture_filter = 1
-scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_bg2dh")
 speed_scale = 2.0
 

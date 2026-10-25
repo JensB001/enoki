@@ -1,19 +1,19 @@
 [gd_scene format=3 uid="uid://8y4sxemxvt5m"]
 
 [ext_resource type="PackedScene" uid="uid://bc75fiumk1yka" path="res://world/ChunkManager.tscn" id="2_p68gx"]
-[ext_resource type="PackedScene" uid="uid://cr474r3qxkf2w" path="res://characters/Player/player.tscn" id="2_yc0c3"]
+[ext_resource type="PackedScene" uid="uid://c25v3bmduov7o" path="res://characters/Player/Player.tscn" id="2_yc0c3"]
 [ext_resource type="PackedScene" uid="uid://ikaycm4wsknd" path="res://characters/god/God.tscn" id="3_kxwc8"]
 [ext_resource type="Resource" uid="uid://c34m8nvph0agk" path="res://world/chunks/mildgrass.tres" id="4_l0xyp"]
 [ext_resource type="Script" uid="uid://kahsemfrpy8t" path="res://gui/menus/code_window/CodeWindowContainer.cs" id="5_gqrb7"]
 [ext_resource type="PackedScene" uid="uid://382jkw3yrn5y" path="res://characters/npcs/chimkn.tscn" id="6_0ojpo"]
 [ext_resource type="Script" uid="uid://cgforeiv8tmna" path="res://gui/menus/code_window/CanvasScript.cs" id="6_dn2vf"]
 [ext_resource type="Script" uid="uid://b8kb3pttomcqy" path="res://gui/menus/code_window/blocks/BlockCanvas.cs" id="6_l0xyp"]
+[ext_resource type="PackedScene" uid="uid://v832bsdtjcjw" path="res://characters/npcs/GlogTheGlutton.tscn" id="7_0ojpo"]
 [ext_resource type="Resource" uid="uid://xi2o7k6555wl" path="res://world/chunks/stone.tres" id="8_stone"]
-[ext_resource type="Script" uid="uid://cvckaigmj5t1v" path="res://world/CanvasLayer2.cs" id="10_sxjpj"]
-[ext_resource type="Script" uid="uid://b24sa6hrldjjj" path="res://world/ProgressBar.cs" id="11_5ltty"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sxjpj"]
-bg_color = Color(0.8244379, 0.23638326, 0.0037802854, 1)
+[ext_resource type="Resource" uid="uid://5koaf68si3hl" path="res://world/chunks/lotgrass.tres" id="9_lotgrass"]
+[ext_resource type="Resource" path="res://world/chunks/sandpatch.tres" id="10_sandpatch"]
+[ext_resource type="Resource" path="res://world/chunks/autumn.tres" id="11_autumn"]
+[ext_resource type="Resource" path="res://world/chunks/grove.tres" id="12_grove"]
 
 [node name="GameScreen" type="Node2D" unique_id=1151091540]
 
@@ -21,10 +21,11 @@ bg_color = Color(0.8244379, 0.23638326, 0.0037802854, 1)
 position = Vector2(574, 328)
 
 [node name="ChunkManager" parent="." unique_id=1061792989 instance=ExtResource("2_p68gx")]
-Definitions = [ExtResource("8_stone"), ExtResource("4_l0xyp")]
+Definitions = [ExtResource("8_stone"), ExtResource("4_l0xyp"), ExtResource("9_lotgrass"), ExtResource("10_sandpatch"), ExtResource("11_autumn"), ExtResource("12_grove")]
 
 [node name="God" parent="." unique_id=1840092192 node_paths=PackedStringArray("Target") instance=ExtResource("3_kxwc8")]
 EnemyChimknScene = ExtResource("6_0ojpo")
+EnemyGlogScene = ExtResource("7_0ojpo")
 Target = NodePath("../Player")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1206639540]

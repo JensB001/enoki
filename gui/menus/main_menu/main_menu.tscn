@@ -1,10 +1,18 @@
 [gd_scene format=3 uid="uid://biidnkwuqonxh"]
 
+[ext_resource type="Texture2D" uid="uid://cix4p80mgvwxt" path="res://asset/menu.png" id="1_allrj"]
 [ext_resource type="Script" uid="uid://cmw702ax6hmcd" path="res://gui/menus/main_menu/MainMenuContainer.cs" id="1_l20kq"]
 
 [node name="MainMenu" type="Node2D" unique_id=365187159]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1621210713]
+
+[node name="MainMenuArt" type="TextureRect" parent="CanvasLayer" unique_id=354182981]
+texture_filter = 1
+offset_right = 1153.0
+offset_bottom = 648.0
+texture = ExtResource("1_allrj")
+stretch_mode = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=183290739]
 anchors_preset = 8

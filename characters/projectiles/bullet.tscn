@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bjv08x0rvqxjk"]
 
 [ext_resource type="Script" uid="uid://cx2na7ir66h08" path="res://characters/projectiles/Bullet.cs" id="1_wllkp"]
-[ext_resource type="Texture2D" uid="uid://calq0aidgwa4y" path="res://Asset/bullets-sheet.png" id="2_wllkp"]
+[ext_resource type="Texture2D" uid="uid://calq0aidgwa4y" path="res://asset/bullets-sheet.png" id="2_wllkp"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ks3ii"]
 atlas = ExtResource("2_wllkp")
@@ -43,7 +43,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_m2y2t"]
-radius = 9.0
+radius = 3.0
 
 [node name="Bullet" type="Area2D" unique_id=1848642379]
 z_index = 2

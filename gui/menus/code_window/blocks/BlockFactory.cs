@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Enoki.gui.menus.code_window.blocks;
 
@@ -18,7 +19,9 @@ public static class BlockFactory
 
 	private static AttributeBlock Attribute()
 	{
-		var all = Enum.GetValues<AttributeType>();
+		var all = Enum.GetValues<AttributeType>()
+			.Where(t => t != AttributeType.Bullet)
+			.ToArray();
 		return new() { Value = all[Random.Shared.Next(all.Length)] };
 	}
 

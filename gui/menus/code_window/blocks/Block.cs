@@ -54,8 +54,9 @@ public abstract partial class Block : PanelContainer {
 			canvas.FitToBlocks();
 			GetViewport().SetInputAsHandled();
 		} else if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: false }) {
+			var viewport = GetViewport();
 			EndDrag();
-			GetViewport().SetInputAsHandled();
+			viewport.SetInputAsHandled();
 		}
 	}
 
@@ -77,7 +78,9 @@ public abstract partial class Block : PanelContainer {
 	private void EndDrag() {
 		_dragging = false;
 		var canvas = FindBlockCanvas();
-		canvas.TryDropIntoSlot(this);
+		if (!canvas.TryTrash(this)) {
+			canvas.TryDropIntoSlot(this);
+		}
 		canvas.FitToBlocks();
 		canvas.PublishShoot();
 	}

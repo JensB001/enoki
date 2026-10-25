@@ -6,6 +6,16 @@ namespace Enoki.gui.menus.code_window.blocks;
 public partial class BlockCanvas : Control {
 
 	private const float Margin = 24;
+	
+	private static bool Touches(Control a, Control b) => a.GetGlobalRect().Intersects(b.GetGlobalRect());
+	
+	private static bool IsProtected(Block block) =>
+		block is ShootBlock or TrashBlock or AttributeBlock { Value: AttributeType.Bullet };
+
+// Protected blocks, and any expression that contains one, can't be deleted
+	private static bool IsDeletable(Block block) =>
+		!IsProtected(block) &&
+		!block.FindChildren("*", "", true, false).OfType<Block>().Any(IsProtected);
 
 	private int _spawnCount;
 	private Control _window;
@@ -15,6 +25,7 @@ public partial class BlockCanvas : Control {
 		_window = GetParent().GetParent<Control>();
 
 		Spawn(new ShootBlock());
+		Spawn(new TrashBlock());
 		PublishShoot();
 
 		GameState.Instance.UpgradeDropped += Spawn;
@@ -41,6 +52,8 @@ public partial class BlockCanvas : Control {
 	}
 
 	public bool TryDropIntoSlot(Block block) {
+		if (block is ShootBlock or TrashBlock) return false;
+
 		if (block is ShootBlock) return false;
 		
 		var mouse = GetGlobalMousePosition();
@@ -98,5 +111,44 @@ public partial class BlockCanvas : Control {
 		}
 		CustomMinimumSize = extent + Vector2.One * Margin;
 		_window.Size = Vector2.Zero;
+	}
+	
+	public bool TryTrash(Block dragged) {
+		if (dragged is TrashBlock) {
+			// Trashcan dragged onto things: delete every deletable block it overlaps
+			var touched = FindChildren("*", "", true, false)
+				.OfType<Block>()
+				.Where(b => b != dragged && IsDeletable(b) && Touches(b, dragged))
+				.ToList();
+
+			// If a nested block is touched, delete only that one, not the parent expression around it
+			var toDelete = touched
+				.Where(b => !touched.Any(other => other != b && b.IsAncestorOf(other)))
+				.ToList();
+
+			foreach (var block in toDelete) {
+				Delete(block);
+			}
+			return toDelete.Count > 0;
+		}
+
+		if (!IsDeletable(dragged)) return false;
+
+		// Block dragged onto a trashcan: delete the block
+		var hitTrash = GetChildren()
+			.OfType<TrashBlock>()
+			.Any(t => Touches(t, dragged));
+
+		if (hitTrash) {
+			Delete(dragged);
+		}
+		return hitTrash;
+	}
+
+	private static void Delete(Block block) {
+		// Remove immediately: QueueFree alone leaves the node in the tree until end of frame,
+		// so FitToBlocks / PublishShoot would still see it.
+		block.GetParent().RemoveChild(block);
+		block.QueueFree();
 	}
 }

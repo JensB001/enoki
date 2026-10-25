@@ -12,12 +12,13 @@ public partial class Player : CharacterBody2D, IDamageable
 	public Vector2 ScreenSize; // Size of the game window.
 	public AnimatedSprite2D animatedSprite2D;
 
-	[Export] HealthComponent Health {get; set;}
+	[Export] public HealthComponent Health {get; set;}
 
 	private double _invincible;
 
 	public override void _Ready()
 	{
+		// GetTree().Root.PrintTreePretty();
 		ScreenSize = GetViewportRect().Size;
 
 		Movement ??= new MovementComponent();
@@ -31,6 +32,11 @@ public partial class Player : CharacterBody2D, IDamageable
 		Health.Died += OnDied;
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
+
+		var hud = GetNodeOrNull<CanvasLayer2>("../CanvasLayer2");
+		GD.Print($"LOOKUP V2 at {GetPath()}: {(hud == null ? "null" : "found")}");
+		hud?.Bind(this);
 	}
 
 	public void TakeDamage(DamageInfo damage)

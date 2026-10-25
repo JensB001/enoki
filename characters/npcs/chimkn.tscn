@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://f6yuxp71nnkc"]
+[gd_scene format=3 uid="uid://382jkw3yrn5y"]
 
 [ext_resource type="Script" uid="uid://ctpntxavicxph" path="res://characters/npcs/Chimkn.cs" id="1_31v4f"]
 [ext_resource type="Texture2D" uid="uid://qfjgbt4nhpak" path="res://asset/chimkn.PNG" id="2_h6asq"]

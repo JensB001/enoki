@@ -6,6 +6,8 @@ public partial class HealthComponent : Node, IDamageable
 {
 	[Signal] public delegate void DiedEventHandler();
 
+	[Signal] public delegate void HealthChangeEventHandler(float Health, float MaxHealth);
+
 	private float _MaxHealth;
 
 	[Export] public float MaxHealth { 
@@ -14,6 +16,8 @@ public partial class HealthComponent : Node, IDamageable
 		{
 			_MaxHealth = value;
 			Health = value;
+			if (IsInsideTree())
+        	EmitSignal(SignalName.HealthChange, Health, _MaxHealth);
 		}
 	}
 	
@@ -30,6 +34,8 @@ public partial class HealthComponent : Node, IDamageable
 		if (isDead) return;
 
 		Health -= damage.Physical + damage.Fire + damage.Ice;
+
+		EmitSignal(SignalName.HealthChange, Health, MaxHealth);
 
 		GD.Print($"Health after hit: {Health}/{MaxHealth}");
 

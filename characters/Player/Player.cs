@@ -15,7 +15,14 @@ public partial class Player : CharacterBody2D, IDamageable
 	[Export] public HealthComponent Health {get; set;}
 	SpriteFxComponent SpriteFx { get; set; }
 
+	[Export] public double FireInterval { get; set; } = 0.2; // seconds between shots while holding shoot
+
+	[ExportGroup("Death")]
+	[Export] public double DeathDelay { get; set; } = 1.2;       // real seconds before going back to the menu
+	[Export] public double DeathTimeScale { get; set; } = 0.3;   // slow-mo while dying
+
 	private double _invincible;
+	private double _fireCooldown;
 
 	public override void _Ready()
 	{
@@ -61,7 +68,27 @@ public partial class Player : CharacterBody2D, IDamageable
 	}
 
 	private void OnDied() {
-		GetTree().ChangeSceneToFile("res://gui/menus/main_menu/main_menu.tscn");
+		// Freeze in place, flash and fade out in slow-mo, then go back to the menu.
+		SetPhysicsProcess(false);
+		animatedSprite2D.Stop();
+		SpriteFx.Flash();
+		Engine.TimeScale = DeathTimeScale;
+
+		var fade = CreateTween().SetIgnoreTimeScale();
+		fade.TweenProperty(animatedSprite2D, "modulate:a", 0f, DeathDelay);
+
+		var tree = GetTree();
+		tree.CreateTimer(DeathDelay, processAlways: true, ignoreTimeScale: true).Timeout += () =>
+		{
+			if (!IsInstanceValid(this)) return; // already left the game (e.g. Main Menu button)
+			Engine.TimeScale = 1;
+			tree.ChangeSceneToFile("res://gui/menus/main_menu/main_menu.tscn");
+		};
+	}
+
+	public override void _ExitTree()
+	{
+		Engine.TimeScale = 1; // never leave the slow-mo on when the game scene closes
 	}
 	
 	private void Shoot(BlockValue value) {
@@ -86,15 +113,21 @@ public partial class Player : CharacterBody2D, IDamageable
 	{
 
 		if (_invincible > 0) _invincible -= delta;
+		if (_fireCooldown > 0) _fireCooldown -= delta;
+
+		// Blink while invincible after a hit
+		bool hidden = _invincible > 0 && (int)(_invincible * 15) % 2 == 0;
+		animatedSprite2D.Modulate = hidden ? new Color(1, 1, 1, 0.3f) : Colors.White;
 
 		// Reads WASD movement using the configured move_* actions
 		Vector2 inputDir = Input.GetVector("move_left", "move_right", "move_up", "move_down");
 		Movement.Move(inputDir, Speed);
 
-		// Handle Shooting input
-		if (Input.IsActionJustPressed("shoot"))
+		// Handle Shooting input (hold to keep firing)
+		if (Input.IsActionPressed("shoot") && _fireCooldown <= 0)
 		{
 			Shoot(GameState.Instance.ShootValue);
+			_fireCooldown = FireInterval;
 		}
 
 		// Animation Logic

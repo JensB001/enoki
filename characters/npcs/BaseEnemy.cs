@@ -50,8 +50,8 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 	[Export] public float KnockbackMultiplier { get; set; } = 1;  // lower = heavier
 	[Export] public float PlayerKnockback { get; set; } = 140;    // how hard we bump the player
 
-	/// <summary>Enemies this far from the player are removed (must be > God.SpawnRadius).</summary>
-	[Export] public float DespawnDistance { get; set; } = 1200;
+	/// <summary>Enemies this far from the player are removed (well beyond where God spawns them, just off screen).</summary>
+	[Export] public float DespawnDistance { get; set; } = 700;
 
 	private const string EnemyGroup = "enemies";
 

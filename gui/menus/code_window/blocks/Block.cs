@@ -77,7 +77,9 @@ public abstract partial class Block : PanelContainer {
 	private void EndDrag() {
 		_dragging = false;
 		var canvas = FindBlockCanvas();
-		canvas.TryDropIntoSlot(this);
+		if (!canvas.TryTrash(this)) {
+			canvas.TryDropIntoSlot(this);
+		}
 		canvas.FitToBlocks();
 		canvas.PublishShoot();
 	}

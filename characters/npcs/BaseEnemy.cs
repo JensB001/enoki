@@ -5,13 +5,13 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 	protected virtual int Speed => 0;
 	protected virtual int MaxHealth => 0;
 	[Export] public int ScoreValue { get; set; } = 10;
-	[Export(PropertyHint.Range, "0,1,0.01")] public float DropChance { get; set; } = 0.25f;
 
 	public Player Target { get; set; }
 	public AnimatedSprite2D animatedSprite2D;
 	MovementComponent Movement { get; set; }
 	[Export] HealthComponent Health { get; set; }
 	RarityComponent Rarity { get; set; }
+	protected virtual float DropChance => 0f;
 
 	private double _attackCooldown;
 
@@ -32,6 +32,8 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 
 		Health.MaxHealth = MaxHealth;
 		Health.Died += OnDied;
+
+		Rarity.DropChance = DropChance;
 
 		animatedSprite2D = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 	}

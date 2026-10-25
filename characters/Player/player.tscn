@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cr474r3qxkf2w"]
+[gd_scene format=3 uid="uid://c25v3bmduov7o"]
 
 [ext_resource type="Script" uid="uid://bpwdii784rjwd" path="res://characters/Player/Player.cs" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://gdijtbl2g06e" path="res://asset/mosquit-sheet.png" id="2_j341n"]

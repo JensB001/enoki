@@ -49,6 +49,7 @@ script = ExtResource("1_0yfx6")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=597170440]
 texture_filter = 1
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_7p1mr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1934013166]

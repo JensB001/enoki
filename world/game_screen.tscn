@@ -83,6 +83,14 @@ offset_right = 8.0
 offset_bottom = 8.0
 text = "AddBlock"
 
+[node name="ScoreLabel" type="Label" parent="CanvasLayer" unique_id=1367098918]
+offset_left = 1075.0
+offset_top = 27.0
+offset_right = 1136.0
+offset_bottom = 50.0
+text = "Score: 0"
+horizontal_alignment = 1
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=1123217841 node_paths=PackedStringArray("HealthBar")]
 script = ExtResource("10_sxjpj")
 HealthBar = NodePath("MarginContainer/VBoxContainer/HealthBar")

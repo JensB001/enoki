@@ -7,6 +7,6 @@
 
   <ItemGroup>
     <None Include="**\*"
-          Exclude=".godot\**;bin\**;obj\**;shader_cache\**" />
+          Exclude="**\*.cs;.git\**;.idea\**;.godot\**;bin\**;obj\**;shader_cache\**" />
   </ItemGroup>
 </Project>

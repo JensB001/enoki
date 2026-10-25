@@ -54,8 +54,9 @@ public abstract partial class Block : PanelContainer {
 			canvas.FitToBlocks();
 			GetViewport().SetInputAsHandled();
 		} else if (@event is InputEventMouseButton { ButtonIndex: MouseButton.Left, Pressed: false }) {
+			var viewport = GetViewport();
 			EndDrag();
-			GetViewport().SetInputAsHandled();
+			viewport.SetInputAsHandled();
 		}
 	}
 

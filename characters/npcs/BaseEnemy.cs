@@ -15,9 +15,9 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 
 	private double _attackCooldown;
 
-	public float PhysicalDamage { get; set; } = 5;
-	public float FireDamage { get; set; }
-	public float IceDamage { get; set; }
+	protected virtual float PhysicalDamage => 0;
+	protected virtual float FireDamage => 0;
+	protected virtual float IceDamage => 0;
 
 	[Export] public double AttackInterval { get; set; } = 0.5;
 

@@ -25,17 +25,11 @@ public partial class God : Node
 		if (!IsInstanceValid(Target)) return;
 
 		var enemy_chimkn = EnemyChimknScene.Instantiate<Chimkn>();
-        var enmey_glog = EnemyGlogScene.Instantiate<GlogTheGlutton>();
 
 		AddChild(enemy_chimkn);
-        AddChild(enmey_glog);
 
 		enemy_chimkn.Target = Target;
 		enemy_chimkn.GlobalPosition = Target.GlobalPosition
-			+ Vector2.Right.Rotated(GD.Randf() * Mathf.Tau) * SpawnRadius;
-        
-        enmey_glog.Target = Target;
-		enmey_glog.GlobalPosition = Target.GlobalPosition
 			+ Vector2.Right.Rotated(GD.Randf() * Mathf.Tau) * SpawnRadius;
 	}
 

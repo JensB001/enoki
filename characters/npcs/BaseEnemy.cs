@@ -1,10 +1,8 @@
 using Godot;
-using Enoki.gui.menus.code_window.blocks;
-using System.Threading.Tasks;
 
 public partial class BaseEnemy : CharacterBody2D, IDamageable
 {
-	[Export] public int Speed { get; set; } = 410; // How fast the player will move (pixels/sec).
+	[Export] public int Speed { get; set; } = 128; // How fast the player will move (pixels/sec).
 	[Export] public int ScoreValue { get; set; } = 10;
 	[Export(PropertyHint.Range, "0,1,0.01")] public float DropChance { get; set; } = 0.25f;
 
@@ -12,6 +10,7 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 	public AnimatedSprite2D animatedSprite2D;
 	MovementComponent Movement { get; set; }
 	[Export] HealthComponent Health { get; set; }
+	RarityComponent Rarity { get; set; }
 
 	private double _attackCooldown;
 
@@ -25,6 +24,7 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 	{
 		Movement ??= new MovementComponent();
 		Health ??= new HealthComponent();
+		Rarity ??= new RarityComponent();
 		
 		AddChild(Movement);
 		Movement.Body = this;
@@ -43,9 +43,7 @@ public partial class BaseEnemy : CharacterBody2D, IDamageable
 	private void OnDied() {
 		GameState.Instance.AddScore(ScoreValue);
 
-		if (GD.Randf() < DropChance) {
-			GameState.Instance.DropUpgrade(BlockFactory.CreateRandom());
-		}
+		Rarity.Drop();
 
 		QueueFree();
 	}

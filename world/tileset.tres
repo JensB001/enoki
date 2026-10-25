@@ -1,0 +1,19 @@
+[gd_resource type="TileSet" format=3 uid="uid://bbcxp2inlcb11"]
+
+[ext_resource type="Texture2D" uid="uid://4hb0pde61073" path="res://Asset/ground-sheet.png" id="1_0tsup"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l0xyp"]
+texture = ExtResource("1_0tsup")
+texture_region_size = Vector2i(32, 16)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+
+[resource]
+tile_shape = 1
+tile_size = Vector2i(32, 16)
+physics_layer_0/collision_layer = 1
+sources/1 = SubResource("TileSetAtlasSource_l0xyp")
